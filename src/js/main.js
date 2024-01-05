@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 //----------------------------- Launch Swup -----------------------------//
 const swup = new Swup({
-    animateHistoryBrowsing: true,
+    // animateHistoryBrowsing: true,
     linkToSelf: "scroll",
     plugins: [new SwupHeadPlugin({
         awaitAssets: true,
@@ -18,7 +18,9 @@ const swup = new Swup({
     ), new SwupDebugPlugin()],
 });
 //----------------------------- End Launch Swup -----------------------------//
-
+swup.hooks.on("visit:start", (visit) => {
+    visit.scroll.reset = false;
+});
 
 //----------------------------- Launch Lenis -----------------------------//
 // const lenis = new Lenis();
