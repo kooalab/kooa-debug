@@ -1,0 +1,100 @@
+---
+const { phrase1, phrase2, phrase3, className, ...rest } = Astro.props;
+---
+
+<section class="paragraph-section side-side">
+  <div class="container">
+    <p class="paragraph split-to-words">
+      {phrase1 && <span>{phrase1}</span>}
+      {phrase2 && <span>{phrase2}</span>}
+      {phrase3 && <span>{phrase3}</span>}
+    </p>
+    <p class="smaller-paragraph">
+      L'exclusivité n'est pas un luxe, c'est une nécessité dans le monde digital
+      d'aujourd'hui.
+    </p>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../../../styles/utils.scss" as *;
+
+  section {
+    height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    p.paragraph {
+      text-align: center;
+      @include s(font-size, 20, 26);
+      line-height: 2.2;
+      max-width: 25ch;
+
+      span {
+        // background-color: red;
+        color: var(--clr-text-100);
+        font-weight: 600;
+      }
+
+      @media screen and (min-width: 56.25rem) {
+        line-height: 1.84;
+        max-width: 30ch;
+      }
+    }
+    &.side-side {
+      .container {
+        justify-content: space-between;
+        align-items: flex-start;
+
+        row-gap: 0.5em;
+
+        @media screen and (max-width: 50rem) {
+          flex-direction: column;
+          align-items: center;
+          .o-e {
+            position: absolute;
+            // width: 10px;
+            // height: 10px;
+            // background-color: red;
+            &[data-order="0"] {
+              top: 0%;
+            }
+            &[data-order="1"] {
+              top: 90%;
+            }
+            &[data-order="2"] {
+              top: 180%;
+            }
+          }
+          p.paragraph {
+            text-align: center;
+          }
+          p.smaller-paragraph {
+            display: none;
+            margin-top: 5rem;
+            // display: none;
+            text-align: left;
+          }
+        }
+      }
+      p.paragraph {
+        text-align: left;
+        max-width: 35ch;
+        text-align: left;
+      }
+      p.smaller-paragraph {
+        @include s(font-size, 16, 18);
+        max-width: 21ch;
+        line-height: 2;
+        text-align: justify;
+      }
+    }
+  }
+</style>

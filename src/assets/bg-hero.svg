@@ -1,0 +1,38 @@
+ <svg
+      width="394"
+      height="916"
+      preserveAspectRatio="xMidYMid meet"
+      class="svg-illu"
+      viewBox="0 0 394 916"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g filter="url(#filter0_f_2873_2056)">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M232.76 -65.0307L373.455 -59.3904L303.117 403.52L250.371 779.179L95.9185 408.83L67.3238 -71.6628L171.684 -67.4792L231.805 -133.742L232.76 -65.0307Z"
+          fill="#2C2F34"></path>
+      </g>
+      <defs>
+        <filter
+          id="filter0_f_2873_2056"
+          x="-68.6162"
+          y="-269.683"
+          width="578.012"
+          height="1184.8"
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"></feBlend>
+          <feGaussianBlur
+            stdDeviation="67.9702"
+            result="effect1_foregroundBlur_2873_2056"></feGaussianBlur>
+        </filter>
+      </defs>
+    </svg>

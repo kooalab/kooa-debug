@@ -1,0 +1,111 @@
+---
+import Accordion from "../../Accordion.astro";
+import Title from "../../Title.astro";
+---
+
+<section>
+  <div class="container">
+    <div class="heading">
+      <Title
+        align="left"
+        mainTitle="Réponses aux"
+        accent="Questions Courantes"
+        subTitle="FAQ"
+      />
+      <p>
+        Parcourez notre liste de questions fréquemment posées pour éliminer vos
+        doutes sur la conception web, le support et nos forfaits.
+      </p>
+    </div>
+    <div class="card-wrapper">
+      <div class="left-wrapper">
+        <Accordion
+          title="Le prix donné par le configurateur est-il fiable ?"
+          text="Le tarif affiché par notre configurateur est ce que vous payez, point final. Aucun frais caché, aucune surprise. Notre transparence est votre atout pour décider en toute confiance."
+        />
+
+        <Accordion
+          title="Le code sur mesure est-il adaptable pour le futur ?"
+          text="Oui, absolument. Nos sites sont conçus pour évoluer avec vous. Grâce à des technologies avancées comme Astro, votre site s'adaptera facilement aux nouveautés et aux changements de design."
+        />
+
+        <Accordion
+          title="Que veut dire 'optimisé pour le SEO' chez vous ?"
+          text="Un site optimisé pour le SEO, chez nous, c'est un site qui se trouve facilement sur Google et qui plaît aux visiteurs. Nous peaufinons tout, des balises méta au contenu, pour cibler les bons mots-clés. Et si vous prenez notre option de rédaction, nous affinons encore davantage votre référencement."
+        />
+
+        <Accordion
+          title="Comment assurez-vous la conformité au RGPD ?"
+          text="Nous prenons la protection des données au sérieux. Chaque site créé est en conformité stricte avec le RGPD, que ce soit pour la collecte ou le stockage des données. Vous êtes en sécurité, et en règle."
+        />
+        <Accordion
+          title="Que couvre le support pour la mise à jour du contenu ?"
+          text="Pour toute petite modification, une image, un texte, envoyez-nous simplement un message sur Slack. C'est inclus dans votre forfait pendant 12 mois, sans surcoût."
+        />
+      </div>
+
+      <div class="right-wrapper">
+        <Accordion
+          title="Quelles sont mes options après les 12 premiers mois ?"
+          text="Après un an, à vous de voir. Vous pouvez prendre en main l'hébergement ou opter pour un de nos forfaits de support, ajustés à vos besoins, de la maintenance à l'optimisation avancée."
+        />
+
+        <Accordion
+          title="Quel est le délai moyen pour créer un site web ?"
+          text="En fonction de vos besoins, comptez en moyenne entre 4 et 8 semaines pour avoir un site opérationnel et sur mesure."
+        />
+
+        <Accordion
+          title="Comment sont traitées les révisions et modifications ?"
+          text="Nous vous proposons des phases de révision pour que le résultat vous satisfasse pleinement. Toutes modifications sont planifiées et mises en œuvre rapidement, en toute transparence."
+        />
+
+        <Accordion
+          title="Comment se déroule la communication ?"
+          text="Un chef de projet vous est dédié et vous tient informé à chaque étape. Les échanges se font principalement par vidéoconférence et, si vous êtes en Suisse centrale, nous pouvons aussi nous déplacer. Pour le quotidien, un canal Slack est à votre disposition, avec une réactivité en moins d'une heure."
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../../../styles/utils.scss" as *;
+  .heading {
+    display: flex;
+    flex-direction: column;
+    @include s(gap, 20, 20);
+    align-items: center;
+
+    p {
+      text-align: center;
+      max-width: 40ch;
+      @include s(font-size, 16, 16);
+    }
+    @media screen and (min-width: 62.5rem) {
+      flex-direction: row;
+      align-items: flex-end;
+      p {
+        text-align: left;
+        @include s(margin-bottom, -12, 12);
+        max-width: 36ch;
+      }
+    }
+  }
+
+  .card-wrapper {
+    @include s(margin-top, 70, 70);
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    .right-wrapper,
+    .left-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    @media screen and (min-width: 800px) {
+      flex-direction: row;
+    }
+  }
+</style>

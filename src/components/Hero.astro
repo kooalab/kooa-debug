@@ -1,0 +1,236 @@
+---
+import { Image } from "astro:assets";
+import Button from "./Button.astro";
+import Title from "./Title.astro";
+import star from "../assets/stars-final.jpg";
+import bgHero from "../assets/bg-hero.svg";
+
+const { description, title, accent, subTitle, type, ...rest } = Astro.props;
+---
+
+<section {...rest}>
+  <div class="stars-bg">
+    <div class="stars">
+      <Image src={star} alt="stars" />
+    </div>
+    <div class="overlay-box">
+      <div class="overlay o-e"></div>
+    </div>
+  </div>
+
+  <div class="bg">
+    <Image src={bgHero} alt="bg-hero" class="svg-illu" />
+    <svg
+      width="1305"
+      height="1213"
+      class="big-screen"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 1305 1213"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g filter="url(#filter0_f_2874_2057)">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M479.281 -168.763L666.615 -247.003L856.356 400.872L1016 923.997L588.756 533.893L259 -76.7635L397.96 -134.8L436.223 -257.992L479.281 -168.763Z"
+          fill="#292C30"></path>
+      </g>
+      <defs>
+        <filter
+          id="filter0_f_2874_2057"
+          x="-29.6"
+          y="-546.592"
+          width="1334.2"
+          height="1759.19"
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"></feBlend>
+          <feGaussianBlur
+            stdDeviation="144.3"
+            result="effect1_foregroundBlur_2874_2057"></feGaussianBlur>
+        </filter>
+      </defs>
+    </svg>
+  </div>
+  <div class="container">
+    <Title {type} mainTitle={title} accent={accent} subTitle={subTitle} />
+    <p>
+      {description}
+    </p>
+    <div class="button-wrapper">
+      <Button classes="config-button magnetic" text="Calculez votre prix" />
+      <Button
+        secondary
+        text="Prendre contact"
+        classes="contact-button magnetic"
+      />
+    </div>
+  </div>
+</section>
+<style lang="scss">
+  @use "../styles/utils.scss" as *;
+
+  section {
+    // @include s(padding-top, 80, 200);
+    padding-top: 15svh;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+
+    p {
+      text-align: center;
+      @include s(max-width, 307, 500);
+      @include s(margin-bottom, 60, 60);
+      @include s(font-size, 16, 16);
+    }
+    &.website-section {
+      // @include s(padding-top, 140, 260);
+      padding-top: 15svh;
+
+      p {
+        @include s(max-width, 307, 450);
+      }
+    }
+    &.support-section {
+      // @include s(padding-top, 140, 260);
+      padding-top: 15svh;
+      p {
+        @include s(max-width, 307, 440);
+      }
+    }
+  }
+
+  .bg {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    @include s(top, -200, -100, false);
+    @include s(height, 1150, 1550);
+    opacity: 0.6;
+    overflow: hidden;
+    img {
+      position: absolute;
+      width: 100%;
+    }
+    svg.big-screen {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      display: none;
+
+      @-moz-document url-prefix() {
+        opacity: 0.4;
+        filter: blur(100px);
+      }
+    }
+    @media only screen and (min-width: 37.5rem /* 600px -> 37.5rem */) {
+      svg.big-screen {
+        display: unset;
+      }
+      img.svg-illu {
+        display: none;
+      }
+    }
+  }
+
+  .stars-bg {
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    @include s(height, 750, 950);
+    width: 100%;
+    @include s(max-width, 800, 900);
+    margin-inline: auto;
+    overflow-x: hidden;
+    .stars {
+      width: 100%;
+      height: 100%;
+      // background-color: red;
+      clip-path: polygon(100% 0, 84% 90%, 31% 78%, 9% 44%, 0 0);
+      // background-color: red;
+      overflow: hidden;
+      opacity: 1;
+      position: absolute;
+      z-index: -1;
+      // animation: opaAnim 3s ease-in forwards;
+      @media only screen and (min-width: 37.5rem /* 600px -> 37.5rem */) {
+        clip-path: polygon(0 0, 62% 0, 86% 45%, 90% 100%, 36% 79%, 14% 48%);
+      }
+      img {
+        width: 200%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+      @media only screen and (min-width: 37.5rem /* 600px -> 37.5rem */) {
+        clip-path: polygon(0 0, 62% 0, 86% 45%, 90% 100%, 36% 79%, 14% 48%);
+        img {
+          width: 100%;
+
+          object-position: top center;
+        }
+      }
+    }
+
+    .overlay-box {
+      width: 100%;
+      overflow: hidden;
+      @include s(height, 750, 850);
+      @include s(max-width, 800, 800);
+
+      .overlay {
+        pointer-events: none;
+        background-image: url("../assets/overlay.png");
+        background-repeat: repeat;
+        // mix-blend-mode: lighten;
+        // background-color: red;
+        width: 200%;
+        position: absolute;
+        // z-index: 1;
+        top: 0;
+        @include s(height, 750, 850);
+
+        &.animate {
+          animation: move-overlay 20s linear infinite;
+        }
+      }
+    }
+  }
+  @keyframes move-overlay {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    padding-inline: 0.75rem;
+    @include s(gap, 12, 20);
+    @media screen and (min-width: 30rem /* 480px -> 30rem */) {
+      flex-direction: row;
+    }
+  }
+</style>

@@ -1,0 +1,289 @@
+---
+import { Image } from "astro:assets";
+import Title from "./Title.astro";
+import unique from "../assets/icons/unique.svg";
+import support from "../assets/icons/support.svg";
+import devis from "../assets/icons/devis.svg";
+import arrow from "../assets/icons/right-arrow.svg";
+import Button from "./Button.astro";
+import Icon from "astro-icon";
+---
+
+<section>
+  <div class="container">
+    <div class="heading">
+      <Title
+        align="left"
+        mainTitle="Nos services"
+        accent="sur Mesure"
+        subTitle="Features"
+      />
+      <p>
+        Découvrez nos trois piliers essentiels: Tarification totalement
+        transparente, conception sur mesure et support inégalé.
+      </p>
+    </div>
+
+    <div class="bento-container swiper">
+      <div id="slider-service" class="slider swiper-wrapper">
+        <div class="card card-a swiper-slide">
+          <div class="icon"><Image src={devis} alt="" /></div>
+          <div class="wrapper">
+            <h3>Devis Instantanés</h3><p>
+              Pas besoin de consultations. Configurez votre site sur mesure et
+              découvrez le tarif sans attendre.
+            </p>
+            <button class="link secondary magnetic" data-strength="20"
+              >Calculer le prix<Icon name="right-arrow" /></button
+            >
+          </div>
+        </div>
+        <div class="card card-b swiper-slide">
+          <div class="icon"><Image src={unique} alt="" /></div>
+          <div class="wrapper">
+            <h3>Unique en Son Genre</h3><p>
+              Aucun template utilisé. Profitez d'un design et d'un développement
+              entièrement personnalisés.
+            </p>
+            <a href="" class="link secondary magnetic" data-strength="20"
+              >Création de site internet<Icon name="right-arrow" /></a
+            >
+          </div>
+        </div>
+        <div class="card card-c swiper-slide">
+          <div class="icon"><Image src={support} alt="" /></div>
+          <div class="wrapper">
+            <h3>Support Incomparable</h3><p>
+              Ayez l'esprit tranquille grâce à 12 mois de services intégrés -
+              mises à jour, analyses et assistance 24/7.
+            </p>
+            <a href="" class="link secondary magnetic" data-strength="20"
+              >Support & maintenance web<Icon name="right-arrow" /></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="revue-container o-e" data-action="marquee">
+      <div class="wrapper">
+        <h3>Planifiez Maintenant Votre Analyse Gratuite de 15 Minutes</h3>
+        <p>
+          Boostez votre site avec nos conseils experts gratuits. Élevez votre
+          présence en ligne dès aujourd'hui !
+        </p>
+      </div>
+
+      <Button
+        link="https://www.google.com"
+        classes="magnetic"
+        text="Planifiez votre revue"
+      />
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../styles/utils.scss" as *;
+
+  .heading {
+    display: flex;
+    flex-direction: column;
+    @include s(gap, 20, 20);
+    align-items: center;
+
+    p {
+      text-align: center;
+      max-width: 40ch;
+      @include s(font-size, 16, 16);
+    }
+    @media screen and (min-width: 62.5rem) {
+      flex-direction: row;
+      align-items: flex-end;
+      p {
+        text-align: left;
+        @include s(margin-bottom, -12, 12);
+        max-width: 36ch;
+      }
+    }
+  }
+
+  .icon {
+    @include s(width, 45, 52);
+    @include s(height, 45, 52);
+    background-color: var(--clr-bg-600);
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+
+    img {
+      @include s(width, 20, 20);
+      height: auto;
+    }
+  }
+
+  .bento-container {
+    width: 100%;
+    height: fit-content;
+    // @include s(margin-bottom, 120, 120);
+    @include s(margin-top, 70, 70);
+    .slider {
+      display: flex;
+      flex-wrap: nowrap;
+
+      @media (min-width: 850px) {
+        @include s(gap, 12, 12);
+        @include s(font-size, 16, 16);
+        cursor: unset;
+        display: grid;
+        overflow-x: visible;
+        scroll-snap-type: none;
+        margin-inline: auto;
+        grid-template:
+          "a b c"
+          "a b c";
+
+        grid-template-columns: 1 1 1; /* Replace with your desired column widths */
+        grid-template-rows: 10rem 10em;
+      }
+    }
+
+    .card {
+      flex-shrink: 0;
+      width: 80%;
+      max-width: 22.5rem;
+      height: 19rem;
+      background-color: var(--clr-bg-700);
+      border-radius: calc(var(--border-radius) + 2px);
+      border: 1px solid rgba(243, 247, 252, 0.03);
+      overflow: hidden;
+      position: relative;
+      @include s(padding-inline, 28, 32);
+      @include s(padding-top, 28, 32);
+      @include s(padding-bottom, 12, 16);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      @include s(font-size, 16, 16);
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      h3 {
+        font-weight: 700;
+        position: relative;
+        @include s(font-size, 17, 20);
+        line-height: 1.44;
+      }
+      p {
+        position: relative;
+        line-height: 1.44;
+        max-width: 30ch;
+      }
+
+      button,
+      a {
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        @include s(font-size, 14, 14);
+        padding-block: 1rem;
+        transition: color 0.3s cubic-bezier(0.5, 0, 0.15, 1);
+
+        @media (hover: hover) {
+          &:hover {
+            color: var(--clr-text-400);
+            svg {
+              fill: var(--clr-text-400);
+            }
+          }
+        }
+
+        svg {
+          width: 1em;
+          height: 1em;
+          fill: white;
+          transition: fill 0.3s cubic-bezier(0.5, 0, 0.15, 1);
+        }
+      }
+
+      &.card-c {
+        img {
+          max-width: 320px;
+          top: -25px;
+        }
+      }
+
+      @media (min-width: 850px) {
+        scroll-snap-align: none;
+        flex: none;
+        width: 100%;
+        height: 100%;
+        max-width: unset;
+
+        &.card-a {
+          grid-area: a;
+        }
+        &.card-b {
+          grid-area: b;
+        }
+        &.card-c {
+          grid-area: c;
+        }
+      }
+    }
+  }
+
+  .revue-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-inline: auto;
+    @include s(gap, 32, 0);
+    @include s(margin-top, 70, 70);
+    background-color: var(--clr-bg-700);
+    border: 1px solid var(--clr-border);
+    @include s(padding-inline, 24, 32);
+    @include s(padding-bottom, 24, 32);
+    @include s(padding-top, 32, 32);
+
+    border-radius: calc(var(--border-radius) + 2px);
+
+    h3 {
+      font-weight: 700;
+      line-height: 1.5;
+      @include s(font-size, 17, 20);
+    }
+    p {
+      line-height: 1.6;
+      @include s(font-size, 16, 16);
+      max-width: 40ch;
+    }
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      @include s(gap, 20, 16);
+    }
+    @media (min-width: 900px) {
+      @include s(margin-top, 12, 12);
+
+      max-width: unset;
+      flex-direction: row;
+      text-align: left;
+      align-items: center;
+
+      justify-content: space-between;
+      p {
+        max-width: 50ch;
+        line-height: 1.33;
+      }
+      .wrapper {
+        align-items: flex-start;
+        justify-content: center;
+        @include s(gap, 4, 4);
+      }
+    }
+  }
+</style>

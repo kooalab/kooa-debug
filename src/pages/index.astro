@@ -1,0 +1,39 @@
+---
+import Defis from "../components/Defis.astro";
+import Hero from "../components/Hero.astro";
+import HowItWorks from "../components/pages/index/HowItWorks.astro";
+import Marquee from "../components/pages/index/Marquee.astro";
+import Paragraph from "../components/pages/index/Paragraph.astro";
+import Service from "../components/Service.astro";
+import Testimonial from "../components/Testimonial.astro";
+import Footer from "../components/Footer.astro";
+
+import Layout from "../layouts/Layout.astro";
+import Portfolio from "../components/Portfolio.astro";
+import Blog from "../components/pages/index/Blog.astro";
+import FAQ from "../components/pages/index/FAQ.astro";
+---
+
+<Layout title="Title of my page" description="Description of my page">
+  <Hero
+    description="Votre partenaire pour le développement web en Suisse. Sites internet sur mesure et 12 mois de support offert."
+    title="Transformez vos visites en"
+    accent="revenus"
+    subTitle="Agence web Suisse"
+    type="homepage"
+  />
+  <Paragraph
+    phrase1="Transformez votre marque avec des sites web qui parlent."
+    phrase2="Engagement et résultats au cœur de chaque projet"
+    phrase3=" – la précision suisse dans chaque pixel."
+  />
+  <Defis />
+  <Testimonial />
+  <HowItWorks />
+  <Service />
+  <Marquee />
+  <Portfolio />
+  <!-- <Blog /> -->
+  <FAQ />
+  <Footer />
+</Layout>

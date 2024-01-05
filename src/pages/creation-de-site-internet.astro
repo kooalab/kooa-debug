@@ -1,0 +1,37 @@
+---
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import Testimonial from "../components/Testimonial.astro";
+import Avantages from "../components/pages/site-internet/Avantages.astro";
+import FAQ from "../components/pages/site-internet/FAQ.astro";
+import HowItWorks from "../components/pages/site-internet/HowItWorks.astro";
+import Marquee from "../components/pages/site-internet/Marquee.astro";
+import Modules from "../components/pages/site-internet/Modules.astro";
+import Paragraph from "../components/pages/site-internet/Paragraph.astro";
+import Services from "../components/pages/site-internet/Services.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Création de site internet" description="Description of my page">
+  <Hero
+    type="hero-website"
+    description="Boostez votre entreprise avec un site web optimisé. Convertissez efficacement vos visiteurs en clients fidèles."
+    title="Création de site internet"
+    accent="sur mesure en suisse"
+    class="website-section"
+  />
+
+  <Paragraph
+    phrase1="Votre marque mérite plus qu'un site web standard."
+    phrase2="Chez KOOA, nous créons des sites internet sur mesure, "
+    phrase3="conçus et codés spécifiquement pour vous."
+  />
+  <!-- <Avantages /> -->
+
+  <Marquee />
+  <Services />
+  <Testimonial />
+  <Modules />
+  <FAQ />
+  <Footer />
+</Layout>

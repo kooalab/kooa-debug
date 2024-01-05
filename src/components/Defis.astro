@@ -1,0 +1,512 @@
+---
+import Title from "./Title.astro";
+
+import kooa from "../assets/kooa-logo-big.svg";
+import { Image } from "astro:assets";
+import Bentogrid from "./pages/index/Bentogrid.astro";
+---
+
+<section>
+  <div class="container">
+    <div class="img-wrapper">
+      <Image class="logo-bg" src={kooa} alt="" />
+    </div>
+    <Title
+      mainTitle="Naviguez sans Encombre dans"
+      accent="le Monde du Web"
+      subTitle="Défis"
+    />
+    <div class="carousel-wrapper">
+      <div class="carousel">
+        <div class="carousel-item">
+          <svg
+            width="12"
+            height="13"
+            viewBox="0 0 12 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.6528 1.936C11.9652 1.62358 11.9652 1.11705 11.6528 0.804627C11.3404 0.492208 10.8338 0.492208 10.5214 0.804627L6.08711 5.23894L1.65279 0.804627C1.34038 0.492208 0.833843 0.492208 0.521424 0.804627C0.209005 1.11705 0.209005 1.62358 0.521424 1.936L4.95574 6.37031L0.521424 10.8046C0.209005 11.117 0.209005 11.6236 0.521424 11.936C0.833843 12.2484 1.34038 12.2484 1.65279 11.936L6.08711 7.50168L10.5214 11.936C10.8338 12.2484 11.3404 12.2484 11.6528 11.936C11.9652 11.6236 11.9652 11.117 11.6528 10.8046L7.21848 6.37031L11.6528 1.936Z"
+            ></path>
+          </svg>
+          <span class="mobile" aria-disabled="true"
+            >Complexités tech élevées</span
+          >
+          <span aria-disabled="true"
+            >Dépassé par les complexités techniques</span
+          >
+        </div>
+        <div class="carousel-item">
+          <svg
+            width="12"
+            height="13"
+            viewBox="0 0 12 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.6528 1.936C11.9652 1.62358 11.9652 1.11705 11.6528 0.804627C11.3404 0.492208 10.8338 0.492208 10.5214 0.804627L6.08711 5.23894L1.65279 0.804627C1.34038 0.492208 0.833843 0.492208 0.521424 0.804627C0.209005 1.11705 0.209005 1.62358 0.521424 1.936L4.95574 6.37031L0.521424 10.8046C0.209005 11.117 0.209005 11.6236 0.521424 11.936C0.833843 12.2484 1.34038 12.2484 1.65279 11.936L6.08711 7.50168L10.5214 11.936C10.8338 12.2484 11.3404 12.2484 11.6528 11.936C11.9652 11.6236 11.9652 11.117 11.6528 10.8046L7.21848 6.37031L11.6528 1.936Z"
+            ></path>
+          </svg>
+          <span class="mobile" aria-disabled="true">Frais web inattendus</span>
+          <span aria-disabled="true"
+            >Surpris par des frais web inattendus et cachés</span
+          >
+        </div>
+        <div class="carousel-item">
+          <svg
+            width="12"
+            height="13"
+            viewBox="0 0 12 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.6528 1.936C11.9652 1.62358 11.9652 1.11705 11.6528 0.804627C11.3404 0.492208 10.8338 0.492208 10.5214 0.804627L6.08711 5.23894L1.65279 0.804627C1.34038 0.492208 0.833843 0.492208 0.521424 0.804627C0.209005 1.11705 0.209005 1.62358 0.521424 1.936L4.95574 6.37031L0.521424 10.8046C0.209005 11.117 0.209005 11.6236 0.521424 11.936C0.833843 12.2484 1.34038 12.2484 1.65279 11.936L6.08711 7.50168L10.5214 11.936C10.8338 12.2484 11.3404 12.2484 11.6528 11.936C11.9652 11.6236 11.9652 11.117 11.6528 10.8046L7.21848 6.37031L11.6528 1.936Z"
+            ></path>
+          </svg>
+          <span class="mobile" aria-disabled="true">Sécurité site en jeu</span>
+          <span aria-disabled="true"
+            >Préoccupation fréquente pour la sécurité du site</span
+          >
+        </div>
+        <div class="carousel-item">
+          <svg
+            width="12"
+            height="13"
+            viewBox="0 0 12 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.6528 1.936C11.9652 1.62358 11.9652 1.11705 11.6528 0.804627C11.3404 0.492208 10.8338 0.492208 10.5214 0.804627L6.08711 5.23894L1.65279 0.804627C1.34038 0.492208 0.833843 0.492208 0.521424 0.804627C0.209005 1.11705 0.209005 1.62358 0.521424 1.936L4.95574 6.37031L0.521424 10.8046C0.209005 11.117 0.209005 11.6236 0.521424 11.936C0.833843 12.2484 1.34038 12.2484 1.65279 11.936L6.08711 7.50168L10.5214 11.936C10.8338 12.2484 11.3404 12.2484 11.6528 11.936C11.9652 11.6236 11.9652 11.117 11.6528 10.8046L7.21848 6.37031L11.6528 1.936Z"
+            ></path>
+          </svg>
+          <span class="mobile" aria-disabled="true"
+            >Support lent, attente longue</span
+          >
+          <span aria-disabled="true"
+            >Longues attentes pour un support urgent</span
+          >
+        </div>
+        <div class="carousel-item">
+          <svg
+            width="12"
+            height="13"
+            viewBox="0 0 12 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.6528 1.936C11.9652 1.62358 11.9652 1.11705 11.6528 0.804627C11.3404 0.492208 10.8338 0.492208 10.5214 0.804627L6.08711 5.23894L1.65279 0.804627C1.34038 0.492208 0.833843 0.492208 0.521424 0.804627C0.209005 1.11705 0.209005 1.62358 0.521424 1.936L4.95574 6.37031L0.521424 10.8046C0.209005 11.117 0.209005 11.6236 0.521424 11.936C0.833843 12.2484 1.34038 12.2484 1.65279 11.936L6.08711 7.50168L10.5214 11.936C10.8338 12.2484 11.3404 12.2484 11.6528 11.936C11.9652 11.6236 11.9652 11.117 11.6528 10.8046L7.21848 6.37031L11.6528 1.936Z"
+            ></path>
+          </svg>
+          <span class="mobile" aria-disabled="true"
+            >Templates peu flexibles</span
+          >
+          <span aria-disabled="true"
+            >Contraint par des templates web non flexibles</span
+          >
+        </div>
+        <div class="carousel-item">
+          <svg
+            width="12"
+            height="13"
+            viewBox="0 0 12 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.6528 1.936C11.9652 1.62358 11.9652 1.11705 11.6528 0.804627C11.3404 0.492208 10.8338 0.492208 10.5214 0.804627L6.08711 5.23894L1.65279 0.804627C1.34038 0.492208 0.833843 0.492208 0.521424 0.804627C0.209005 1.11705 0.209005 1.62358 0.521424 1.936L4.95574 6.37031L0.521424 10.8046C0.209005 11.117 0.209005 11.6236 0.521424 11.936C0.833843 12.2484 1.34038 12.2484 1.65279 11.936L6.08711 7.50168L10.5214 11.936C10.8338 12.2484 11.3404 12.2484 11.6528 11.936C11.9652 11.6236 11.9652 11.117 11.6528 10.8046L7.21848 6.37031L11.6528 1.936Z"
+            ></path>
+          </svg>
+          <span class="mobile" aria-disabled="true"
+            >Outils altèrent le design</span
+          >
+          <span aria-disabled="true"
+            >Risque d'affecter le design en intégrant des outils essentiels</span
+          >
+        </div>
+        <div class="carousel-item">
+          <svg
+            width="12"
+            height="13"
+            viewBox="0 0 12 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.6528 1.936C11.9652 1.62358 11.9652 1.11705 11.6528 0.804627C11.3404 0.492208 10.8338 0.492208 10.5214 0.804627L6.08711 5.23894L1.65279 0.804627C1.34038 0.492208 0.833843 0.492208 0.521424 0.804627C0.209005 1.11705 0.209005 1.62358 0.521424 1.936L4.95574 6.37031L0.521424 10.8046C0.209005 11.117 0.209005 11.6236 0.521424 11.936C0.833843 12.2484 1.34038 12.2484 1.65279 11.936L6.08711 7.50168L10.5214 11.936C10.8338 12.2484 11.3404 12.2484 11.6528 11.936C11.9652 11.6236 11.9652 11.117 11.6528 10.8046L7.21848 6.37031L11.6528 1.936Z"
+            ></path>
+          </svg>
+          <span class="mobile" aria-disabled="true">Abandon post-lancement</span
+          >
+          <span aria-disabled="true"
+            >Sensation d'abandon après la phase de lancement du site</span
+          >
+        </div>
+        <div class="carousel-item">
+          <svg
+            width="12"
+            height="13"
+            viewBox="0 0 12 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.6528 1.936C11.9652 1.62358 11.9652 1.11705 11.6528 0.804627C11.3404 0.492208 10.8338 0.492208 10.5214 0.804627L6.08711 5.23894L1.65279 0.804627C1.34038 0.492208 0.833843 0.492208 0.521424 0.804627C0.209005 1.11705 0.209005 1.62358 0.521424 1.936L4.95574 6.37031L0.521424 10.8046C0.209005 11.117 0.209005 11.6236 0.521424 11.936C0.833843 12.2484 1.34038 12.2484 1.65279 11.936L6.08711 7.50168L10.5214 11.936C10.8338 12.2484 11.3404 12.2484 11.6528 11.936C11.9652 11.6236 11.9652 11.117 11.6528 10.8046L7.21848 6.37031L11.6528 1.936Z"
+            ></path>
+          </svg>
+          <span class="mobile" aria-disabled="true">Image de marque diluée</span
+          >
+          <span aria-disabled="true"
+            >Dilution de l'image de marque par des éléments web incohérents</span
+          >
+        </div>
+        <div class="carousel-item">
+          <svg
+            width="12"
+            height="13"
+            viewBox="0 0 12 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.6528 1.936C11.9652 1.62358 11.9652 1.11705 11.6528 0.804627C11.3404 0.492208 10.8338 0.492208 10.5214 0.804627L6.08711 5.23894L1.65279 0.804627C1.34038 0.492208 0.833843 0.492208 0.521424 0.804627C0.209005 1.11705 0.209005 1.62358 0.521424 1.936L4.95574 6.37031L0.521424 10.8046C0.209005 11.117 0.209005 11.6236 0.521424 11.936C0.833843 12.2484 1.34038 12.2484 1.65279 11.936L6.08711 7.50168L10.5214 11.936C10.8338 12.2484 11.3404 12.2484 11.6528 11.936C11.9652 11.6236 11.9652 11.117 11.6528 10.8046L7.21848 6.37031L11.6528 1.936Z"
+            ></path>
+          </svg>
+          <span class="mobile" aria-disabled="true"
+            >Coûts de création hauts</span
+          >
+          <span aria-disabled="true"
+            >Lutte avec des coûts de création de site élevés en amont</span
+          >
+        </div>
+        <div class="carousel-item">
+          <svg
+            width="12"
+            height="13"
+            viewBox="0 0 12 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.6528 1.936C11.9652 1.62358 11.9652 1.11705 11.6528 0.804627C11.3404 0.492208 10.8338 0.492208 10.5214 0.804627L6.08711 5.23894L1.65279 0.804627C1.34038 0.492208 0.833843 0.492208 0.521424 0.804627C0.209005 1.11705 0.209005 1.62358 0.521424 1.936L4.95574 6.37031L0.521424 10.8046C0.209005 11.117 0.209005 11.6236 0.521424 11.936C0.833843 12.2484 1.34038 12.2484 1.65279 11.936L6.08711 7.50168L10.5214 11.936C10.8338 12.2484 11.3404 12.2484 11.6528 11.936C11.9652 11.6236 11.9652 11.117 11.6528 10.8046L7.21848 6.37031L11.6528 1.936Z"
+            ></path>
+          </svg>
+          <span class="mobile" aria-disabled="true"
+            >Templates trop standards</span
+          >
+          <span aria-disabled="true"
+            >Templates standards ne reflètent pas votre unicité</span
+          >
+        </div>
+        <div class="carousel-item">
+          <svg
+            width="12"
+            height="13"
+            viewBox="0 0 12 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.6528 1.936C11.9652 1.62358 11.9652 1.11705 11.6528 0.804627C11.3404 0.492208 10.8338 0.492208 10.5214 0.804627L6.08711 5.23894L1.65279 0.804627C1.34038 0.492208 0.833843 0.492208 0.521424 0.804627C0.209005 1.11705 0.209005 1.62358 0.521424 1.936L4.95574 6.37031L0.521424 10.8046C0.209005 11.117 0.209005 11.6236 0.521424 11.936C0.833843 12.2484 1.34038 12.2484 1.65279 11.936L6.08711 7.50168L10.5214 11.936C10.8338 12.2484 11.3404 12.2484 11.6528 11.936C11.9652 11.6236 11.9652 11.117 11.6528 10.8046L7.21848 6.37031L11.6528 1.936Z"
+            ></path>
+          </svg>
+          <span class="mobile" aria-disabled="true"
+            >Suivi utilisateur limité</span
+          >
+          <span aria-disabled="true"
+            >Peu informé du comportement et de l'engagement des utilisateurs du
+            site</span
+          >
+        </div>
+        <div class="carousel-item">
+          <svg
+            width="12"
+            height="13"
+            viewBox="0 0 12 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.6528 1.936C11.9652 1.62358 11.9652 1.11705 11.6528 0.804627C11.3404 0.492208 10.8338 0.492208 10.5214 0.804627L6.08711 5.23894L1.65279 0.804627C1.34038 0.492208 0.833843 0.492208 0.521424 0.804627C0.209005 1.11705 0.209005 1.62358 0.521424 1.936L4.95574 6.37031L0.521424 10.8046C0.209005 11.117 0.209005 11.6236 0.521424 11.936C0.833843 12.2484 1.34038 12.2484 1.65279 11.936L6.08711 7.50168L10.5214 11.936C10.8338 12.2484 11.3404 12.2484 11.6528 11.936C11.9652 11.6236 11.9652 11.117 11.6528 10.8046L7.21848 6.37031L11.6528 1.936Z"
+            ></path>
+          </svg>
+          <span class="mobile" aria-disabled="true">Mise à jour ardue</span>
+          <span aria-disabled="true"
+            >Mise à jour du contenu ardue et chronophage</span
+          >
+        </div>
+        <div class="carousel-item">
+          <svg
+            width="12"
+            height="13"
+            viewBox="0 0 12 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.6528 1.936C11.9652 1.62358 11.9652 1.11705 11.6528 0.804627C11.3404 0.492208 10.8338 0.492208 10.5214 0.804627L6.08711 5.23894L1.65279 0.804627C1.34038 0.492208 0.833843 0.492208 0.521424 0.804627C0.209005 1.11705 0.209005 1.62358 0.521424 1.936L4.95574 6.37031L0.521424 10.8046C0.209005 11.117 0.209005 11.6236 0.521424 11.936C0.833843 12.2484 1.34038 12.2484 1.65279 11.936L6.08711 7.50168L10.5214 11.936C10.8338 12.2484 11.3404 12.2484 11.6528 11.936C11.9652 11.6236 11.9652 11.117 11.6528 10.8046L7.21848 6.37031L11.6528 1.936Z"
+            ></path>
+          </svg>
+
+          <span class="mobile" aria-disabled="true"
+            >Expertise web compliquée</span
+          >
+          <span aria-disabled="true"
+            >Coincé dans des complications avant d'obtenir une expertise web
+            réelle</span
+          >
+        </div>
+      </div>
+    </div>
+    <div class="divider-wrapper">
+      <div class="first-line line o-e" data-action="vs">
+        <div class="meteorite"></div>
+      </div>
+      <span class="o-e" data-action="vs">VS</span>
+      <div class="second-line line o-e" data-action="vs">
+        <div class="meteorite"></div>
+      </div>
+    </div>
+
+    <Bentogrid />
+  </div>
+</section>
+<style lang="scss">
+  @use "../styles/utils.scss" as *;
+
+  section {
+    --stroke-color: var(--clr-text-100);
+  }
+  .container {
+    position: relative;
+    // overflow: hidden;
+    // background: red;
+    overflow: hidden;
+    padding-bottom: 2rem;
+    @include s(padding-top, 50, 100);
+    .img-wrapper {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      @include s(width, 400, 700);
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        background: rgb(7, 8, 11);
+        background: linear-gradient(
+          0deg,
+          rgba(7, 8, 11, 1) 0%,
+          rgba(7, 8, 11, 0.3715861344537815) 100%
+        );
+        inset: 0;
+      }
+    }
+  }
+
+  .carousel-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include s(margin-top, -200, -250);
+
+    .carousel {
+      position: relative;
+      @include s(height, 650, 650);
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      @include s(gap, 24, 24);
+      overflow: hidden;
+      pointer-events: none;
+      .carousel-item {
+        pointer-events: all;
+        position: absolute;
+        @include s(height, 60, 60);
+        @include s(padding-inline, 24, 24);
+        rotate: 0.001deg;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include s(gap, 12, 12);
+        transition:
+          transform 700ms cubic-bezier(0.5, 0, 0.15, 1),
+          opacity 700ms cubic-bezier(0.5, 0, 0.15, 1);
+
+        &::after {
+          opacity: 0;
+          content: "";
+          position: absolute;
+          inset: 0 0 0.1em 0;
+          background-color: var(--clr-bg-700);
+          border-radius: var(--border-radius);
+          border: 1px solid rgba(243, 247, 252, 0.03);
+          z-index: -1;
+          transition: opacity 500ms cubic-bezier(0.5, 0, 0.15, 1);
+        }
+        &.active {
+          &::after {
+            opacity: 1;
+            transition: opacity 600ms cubic-bezier(0.5, 0, 0.15, 1) 0ms;
+          }
+        }
+        svg {
+          @include s(width, 12, 12);
+          height: auto;
+          fill: var(--clr-text-100);
+          transition: fill 0.5s cubic-bezier(0.5, 0, 0.15, 1);
+          margin-top: -0.1em;
+        }
+        span {
+          display: none;
+          @include s(font-size, 16, 16);
+          &.mobile {
+            display: flex;
+          }
+        }
+        @media only screen and (min-width: 37.5rem /* 600px -> 37.5rem */) {
+          span {
+            display: flex;
+            &.mobile {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .divider-wrapper {
+    @include s(margin-block, 90, 90);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include s(max-width, 645, 645);
+    margin-inline: auto;
+
+    .meteorite {
+      width: 100%;
+      @include s(height, 3, 3);
+      border-radius: 9999px;
+      background: rgb(15, 16, 20);
+      background: linear-gradient(
+        90deg,
+        rgba(15, 16, 20, 0) 36%,
+        rgba(255, 255, 255, 1) 95%,
+        rgba(255, 255, 255, 1) 100%
+      );
+      position: absolute;
+      transform: translateX(-101%);
+    }
+
+    .first-line {
+      width: 40%;
+      &.animate {
+        .meteorite {
+          animation: meteorite 5s linear infinite;
+        }
+      }
+    }
+    .second-line {
+      width: 40%;
+      &.animate {
+        .meteorite {
+          animation: meteorite 5s linear infinite;
+          animation-delay: 1.95s; // starts after a 2s delay
+        }
+      }
+    }
+
+    .line {
+      // width: 100%;
+      @include s(height, 3, 3);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+      background-color: var(--clr-bg-700);
+    }
+    span {
+      font-weight: 700;
+      @include s(font-size, 18, 18);
+      letter-spacing: 0.05em;
+      position: relative;
+      &::before {
+        position: absolute;
+        content: "";
+        inset: 0;
+        background-color: var(--clr-bg-900);
+        opacity: 0.95;
+        transform: translateX(0%);
+      }
+      &.animate {
+        &::before {
+          animation: vs 600ms linear forwards;
+          animation-delay: 2.2s; // starts after a 2s delay"
+        }
+      }
+    }
+  }
+  @keyframes meteorite {
+    0%,
+    15% {
+      // The meteorite is moving from the start to the middle
+      transform: translateX(-101%);
+    }
+    75% {
+      // The meteorite has finished moving
+      transform: translateX(101%);
+    }
+    100% {
+      // The meteorite waits here for the second half of the animation time
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes vs {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+</style>

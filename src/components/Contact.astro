@@ -1,0 +1,306 @@
+---
+import mail from "../assets/icons/mail-icon.svg";
+import chat from "../icons/chat-icon.svg";
+import { Image } from "astro:assets";
+import Icon from "astro-icon";
+import Button from "./Button.astro";
+---
+
+<div class="contact">
+  <div class="contact-header">
+    <h3 class="anim" style="--delay : 7">Prendre contact</h3>
+    <div class="button-wrapper anim" style="--delay : 6">
+      <a
+        href="mailto:hello@kooa.ch"
+        class="magnetic"
+        data-strength="30"
+        data-strength-text="20"
+      >
+        <span class="btn-text">
+          <Icon name="mail-icon" width="18" />Par e-mail</span
+        >
+      </a>
+      <a
+        href="https://cal.com"
+        target="_blank"
+        class="magnetic"
+        data-strength="30"
+        data-strength-text="20"
+        ><span class="btn-text"
+          ><Icon name="chat-icon" width="18" />Google meets</span
+        ></a
+      >
+    </div>
+    <div class="ligne" style="--delay : 5"></div>
+  </div>
+  <span class="form-span">Ou directement via notre formulaire</span>
+  <form name="contact" method="POST" data-netlify="true">
+    <div class="wrapper anim" style="--delay : 5" data-name="Nom complet">
+      <!-- <label for="nomComplet">Nom complet *</label> -->
+      <input type="text" id="ncomplet" name="nomComplet" required />
+    </div>
+    <div class="wrapper anim" style="--delay : 4" data-name="E-mail">
+      <!-- <label for="email">E-mail *</label> -->
+      <input type="email" name="email" required />
+    </div>
+    <div class="wrapper textarea anim" style="--delay : 3" data-name="Message">
+      <!-- <label for="message">Message *</label> -->
+      <textarea required name="message" id="msg"></textarea>
+    </div>
+    <div class="button-wrapper anim" style="--delay : 3">
+      <div class="annuler-wrapper">
+        <Button id="annulerContact" secondary text="Annuler" />
+      </div>
+      <div class="envoyer-wrapper">
+        <Button type="submit" text="Envoyer" />
+      </div>
+      <!-- <button id="annulerContact">Annuler</button>
+      <button type="submit">Envoyer</button> -->
+    </div>
+  </form>
+</div>
+
+<style lang="scss">
+  @use "../styles/utils.scss" as *;
+  .contact {
+    pointer-events: all;
+
+    position: absolute;
+    width: calc(100% - 1.875rem);
+    // height: 644px;
+    max-width: 25rem;
+    z-index: 30;
+    flex-direction: column;
+    padding: 1.75rem 1.375rem 1.375rem 1.375rem;
+    overflow-x: hidden;
+    display: none;
+    scale: 0;
+    transform: translateY(240px) scale(0.5, 0.5);
+    opacity: 0;
+    transform-origin: bottom;
+    transition:
+      transform 500ms cubic-bezier(0.75, 0, 0, 1),
+      scale 500ms cubic-bezier(0.75, 0, 0, 1),
+      opacity 300ms cubic-bezier(0.75, 0, 0, 1.1);
+    &.from-nav {
+      transform: translateY(240px) scale(1.1, 1);
+    }
+    @media screen and (min-width: 81.25rem) {
+      font-size: 1.0625rem;
+    }
+  }
+  .form-span {
+    color: #676970;
+    font-size: 0.875em;
+    padding-bottom: 16px;
+  }
+  .contact-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+
+    h3 {
+      font-size: 0.875em;
+    }
+    .button-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        background-color: var(--clr-bg-900);
+        padding-block: 1.125rem;
+        padding-inline: 0.75rem;
+        border-radius: var(--border-radius);
+        border: 1px solid rgba(243, 247, 252, 0.08);
+
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          width: 100%;
+          font-size: 0.875em;
+        }
+      }
+    }
+
+    .ligne {
+      height: 0.0625rem;
+      width: 100%;
+      background-color: rgba(243, 247, 252, 0.03);
+      position: relative;
+      &::before {
+        content: "";
+        inset: 0;
+        background-color: var(--clr-text-700);
+        position: absolute;
+        transform: translateX(0);
+        transition: transform 10000ms cubic-bezier(0.75, 0, 0, 1)
+          calc((var(--delay) * 10ms));
+      }
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-grow: 1;
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      &.focused::after {
+        transform: translateY(-7px) scale(0.8);
+        color: #676970;
+
+        /* Adjust the translateY and scale values as needed */
+      }
+      &::after {
+        content: attr(data-name);
+        position: absolute;
+        top: 1.125rem;
+        left: 1rem;
+        color: #212329;
+        transition: transform 200ms ease-in;
+        transform-origin: top left;
+        pointer-events: none;
+      }
+
+      input,
+      textarea {
+        background-color: var(--clr-bg-900);
+        padding: 1.5rem 0.75rem 0.5rem 1rem;
+        border-radius: var(--border-radius);
+        color: var(--clr-text-100);
+        position: relative;
+        border: 1px solid transparent;
+        transition: border 300ms ease-in;
+        &:focus {
+          outline: none !important;
+          border: 1px solid var(--clr-text-100);
+          // box-shadow: 0 0 0 1px var(--clr-text-100);
+        }
+      }
+      textarea {
+        height: 6.25rem;
+        resize: none;
+        line-height: 1.3;
+      }
+
+      &.textarea {
+        flex-grow: 1;
+      }
+    }
+
+    .button-wrapper {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      margin-top: var(--space-md);
+
+      .annuler-wrapper,
+      .envoyer-wrapper {
+        width: 100%;
+      }
+      .annuler-wrapper {
+        transform: translateX(-60px);
+        transition: transform 0ms cubic-bezier(0.75, 0, 0, 1.1) 600ms;
+      }
+      .envoyer-wrapper {
+        transform: translateX(60px);
+        transition: transform 0ms cubic-bezier(0.75, 0, 0, 1.1) 600ms;
+      }
+      button {
+        width: 100%;
+        padding-block: 1.125rem;
+        border-radius: var(--border-radius);
+        background-color: var(--clr-bg-900);
+        border: 1px solid rgba(243, 247, 252, 0.08);
+
+        &[type="submit"] {
+          background-color: var(--clr-text-100);
+          color: var(--clr-text-700);
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  body.contact-open {
+    .contact {
+      scale: 1;
+      opacity: 1;
+      transform: translate(0) scale(1, 1);
+      transition:
+        transform 500ms cubic-bezier(0.75, 0, 0, 1.1) 0ms,
+        // scale 620ms cubic-bezier(0.75, 0, 0, 1.1) 0ms,
+        opacity 500ms cubic-bezier(0.75, 0, 0, 1) 0ms;
+      &.from-nav {
+        transition:
+          transform 520ms cubic-bezier(0.75, 0, 0, 1.1) 0ms,
+          // scale 620ms cubic-bezier(0.75, 0, 0, 1.1) 0ms,
+          opacity 500ms cubic-bezier(0.75, 0, 0, 1) 40ms;
+      }
+      .ligne {
+        &::before {
+          transform: translateX(100%);
+          transition: transform 2000ms cubic-bezier(0.22, 0.16, 0.04, 1)
+            calc((var(--delay) * 10ms));
+        }
+      }
+      form {
+        .button-wrapper {
+          .annuler-wrapper,
+          .envoyer-wrapper {
+            transform: translateX(0);
+            transition: transform 500ms cubic-bezier(0.75, 0, 0, 1.1) 40ms;
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  // @ts-nocheck
+  document.querySelectorAll(".wrapper input").forEach((element) => {
+    element.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        // You can add additional logic here if needed
+      }
+    });
+  });
+  document
+    .querySelectorAll(".wrapper input, .wrapper textarea")
+    .forEach((element) => {
+      element.addEventListener("focus", function () {
+        this.parentNode.classList.add("focused");
+      });
+      element.addEventListener("blur", function () {
+        if (this.value.trim() === "") {
+          this.parentNode.classList.remove("focused");
+        }
+      });
+      element.addEventListener("input", function () {
+        if (this.value.trim() !== "") {
+          this.parentNode.classList.add("focused");
+        } else {
+          this.parentNode.classList.remove("focused");
+        }
+      });
+    });
+</script>

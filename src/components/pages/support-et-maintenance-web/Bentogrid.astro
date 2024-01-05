@@ -1,0 +1,214 @@
+---
+import { Image } from "astro:assets";
+import tranquiliteEsprit from "../../../assets/tranquilite-desprit.svg";
+import optimisationParcours from "../../../assets/optimisation-parcours.svg";
+import conformiteSecurite from "../../../assets/conformite-et-securite.svg";
+---
+
+<div class="bento-container">
+  <div id="slider-website" class="slider">
+    <div class="card card-a">
+      <h3>Tranquillité d'esprit complète</h3><p>
+        Durant 12 mois, bénéficiez d'un support continu, de mises à jour de
+        contenu, et d'hébergement, le tout entièrement gratuit.
+      </p>
+      <Image
+        src={tranquiliteEsprit}
+        alt="creation de site internet sur mesure"
+      />
+    </div>
+    <div class="card card-b">
+      <h3>Optimisation du parcours client</h3><p>
+        Analyse UX et SEO en temps réel pour améliorer constamment l'interaction
+        des visiteurs et maximiser le taux de conversion.
+      </p>
+      <Image src={optimisationParcours} alt="Taux de conversion optimisé" />
+    </div>
+    <div class="card card-c">
+      <h3>Conformité et Sécurité Avancées</h3><p>
+        Conformité nLPD et mises à jour légales incluses pour garantir que votre
+        site reste toujours en accord avec la réglementation.
+      </p>
+      <Image src={conformiteSecurite} alt="Taux de conversion optimisé" />
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../../../styles/utils.scss" as *;
+
+  .bento-container {
+    width: 100%;
+    height: fit-content;
+    // @include s(margin-bottom, 120, 120);
+
+    .slider {
+      display: flex;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      overflow-x: auto;
+      height: 25rem;
+      scroll-snap-type: x mandatory;
+      cursor: grab;
+      @include s(gap, 12, 12);
+      align-items: flex-end;
+      @media (min-width: 53.125rem) {
+        @include s(font-size, 16, 16);
+        height: unset;
+        cursor: unset;
+        display: grid;
+        overflow-x: visible;
+        scroll-snap-type: none;
+        @include s(max-width, 1064, 1064);
+        margin-inline: auto;
+        grid-template:
+          "a b"
+          "c c";
+
+        grid-template-columns: 1fr 1fr; /* Replace with your desired column widths */
+        grid-template-rows: 20em 18.5em;
+      }
+    }
+    .slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    // Hide scrollbar for IE, Edge and Firefox
+    .slider {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+    .slider.grabbing {
+      cursor: grabbing;
+    }
+
+    .card {
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      width: 80%;
+      max-width: 22.5rem;
+      height: 23rem;
+      background-color: var(--clr-bg-700);
+      border-radius: calc(var(--border-radius) + 1px);
+      border: 1px solid rgba(243, 247, 252, 0.03);
+      scroll-snap-stop: always;
+      overflow: hidden;
+      position: relative;
+      @include s(padding-inline, 22, 34);
+      @include s(padding-block, 28, 34);
+      @include s(gap, 4, 4);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      hyphens: auto;
+      // box-shadow:
+      //   inset 0 1px 1px 0 rgba(199, 211, 234, 0.12),
+      //   inset 0 24px 48px 0 rgba(199, 211, 234, 0.05);
+      h3 {
+        font-weight: 700;
+        position: relative;
+        @include s(font-size, 17, 20);
+        line-height: 1.44;
+        z-index: 1;
+      }
+      p {
+        position: relative;
+        line-height: 1.66;
+        max-width: 30ch;
+        z-index: 1;
+      }
+      img,
+      svg {
+        max-width: 140%;
+        height: auto;
+        object-fit: cover;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      &.card-a {
+        img,
+        svg {
+          max-width: 140%;
+          bottom: unset;
+          top: 0;
+        }
+      }
+      &.card-b {
+        justify-content: flex-end;
+        overflow: visible;
+        img,
+        svg {
+          width: 118%;
+          top: -7%;
+        }
+      }
+      &.card-c {
+        position: relative;
+        img,
+        svg {
+          width: 140%;
+          min-width: 420px;
+          top: -5%;
+        }
+      }
+
+      @media (min-width: 53.125rem) {
+        scroll-snap-align: none;
+        flex: none;
+        width: 100%;
+        height: 100%;
+        max-width: unset;
+        img {
+          max-width: 100%;
+        }
+        &.card-a {
+          img {
+            width: 93%;
+            top: -6%;
+          }
+          p {
+            max-width: 38ch;
+            z-index: 1;
+          }
+
+          // max-width: 100%;
+          grid-area: a;
+        }
+        &.card-b {
+          p {
+            max-width: 35ch;
+          }
+          img,
+          svg {
+            top: -10%;
+          }
+          grid-area: b;
+        }
+        &.card-c {
+          justify-content: flex-start;
+          p {
+            max-width: 35ch;
+          }
+          img,
+          svg {
+            transform: unset;
+            left: unset;
+            right: 0%;
+            width: 60%;
+          }
+          grid-area: c;
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  // @ts-nocheck
+  // import { initializeSlider } from "../../../js/slider";
+  // document.addEventListener("DOMContentLoaded", function () {
+  //   initializeSlider("slider-website");
+  // });
+</script>

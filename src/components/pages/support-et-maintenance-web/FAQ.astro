@@ -1,0 +1,93 @@
+---
+import Accordion from "../../Accordion.astro";
+import Title from "../../Title.astro";
+---
+
+<section>
+  <div class="container">
+    <div class="heading">
+      <Title
+        align="left"
+        mainTitle="Réponses aux"
+        accent="Questions Courantes"
+        subTitle="FAQ"
+      />
+      <p>
+        Parcourez notre liste de questions fréquemment posées pour éliminer vos
+        doutes sur la conception web, le support et nos forfaits.
+      </p>
+    </div>
+    <div class="card-wrapper">
+      <div class="left-wrapper">
+        <Accordion
+          title="Quels sont les avantages de notre configurateur ?"
+          text="Notre configurateur en ligne est conçu pour vous offrir une estimation rapide et précise. Il prend en compte vos besoins spécifiques et vous donne un aperçu direct des coûts associés à la conception de votre site web."
+        />
+
+        <Accordion
+          title="Que se passe-t-il après avoir reçu une estimation ?"
+          text="Suite à votre estimation, vous pouvez choisir de nous contacter pour discuter plus en détail de votre projet. Nous serons ravis d'approfondir vos besoins et d'expliquer comment nous pouvons vous aider."
+        />
+
+        <Accordion
+          title="Comment fonctionne le service de rédaction pour les pages ?"
+          text="Notre service se concentre sur la création de contenu pour les pages que nous développons, en optimisant pour le SEO. Nous ne créons pas de blogs ou d'autres types de contenu à long terme."
+        />
+      </div>
+
+      <div class="right-wrapper">
+        <Accordion
+          title="Que comprennent nos services après le lancement ?"
+          text="Après le lancement, nous proposons un support tout compris pour garantir que votre site fonctionne sans problème. Pour plus de détails, consultez notre page de support."
+        />
+
+        <Accordion
+          title="Comment les sites sont-ils optimisés pour les moteurs de recherche ?"
+          text="Nous suivons les meilleures pratiques de l'industrie pour assurer que votre site est entièrement optimisé pour les moteurs de recherche, améliorant ainsi sa visibilité en ligne."
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../../../styles/utils.scss" as *;
+  .heading {
+    display: flex;
+    flex-direction: column;
+    @include s(gap, 20, 20);
+    align-items: center;
+
+    p {
+      text-align: center;
+      max-width: 40ch;
+      @include s(font-size, 16, 16);
+    }
+    @media screen and (min-width: 62.5rem) {
+      flex-direction: row;
+      align-items: flex-end;
+      p {
+        text-align: left;
+        @include s(margin-bottom, -12, 12);
+        max-width: 36ch;
+      }
+    }
+  }
+
+  .card-wrapper {
+    @include s(margin-top, 70, 70);
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    .right-wrapper,
+    .left-wrapper {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 8px;
+    }
+    @media screen and (min-width: 800px) {
+      flex-direction: row;
+    }
+  }
+</style>

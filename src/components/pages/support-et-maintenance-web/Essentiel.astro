@@ -1,0 +1,490 @@
+---
+import Icon from "astro-icon";
+import Title from "../../Title.astro";
+import img from "../../../assets/kooa-bg-logo.svg";
+import { Image } from "astro:assets";
+import light from "../../../assets/light.svg";
+---
+
+<section class="essential-section o-e" data-action="vs">
+  <div class="light">
+    <div class="light-bar"></div>
+    <Image src={light} alt="" />
+  </div>
+  <div class="container">
+    <div class="heading">
+      <Title
+        align="left"
+        mainTitle="Au-delà"
+        accent="de l'Essentiel"
+        subTitle="Notre support"
+        class="title"
+      />
+      <p>
+        Au-delà des avantages principaux, découvrez les éléments clés qui font
+        de notre support le choix préféré des entreprises.
+      </p>
+    </div>
+    <div class="line-wrapper"><div class="line"></div></div>
+    <div class="stepper-wrapper">
+      <div class="cards-wrapper">
+        <div class="card expanded">
+          <div class="card-header">
+            <h3><Icon name="tranquilite" />Tranquillité d'esprit</h3>
+          </div>
+          <div class="card-content">
+            <p>
+              Gardez l'esprit serein en sachant que votre site est sauvegardé,
+              hébergé et toujours conforme aux régulations les plus récentes.
+            </p>
+            <ul>
+              <li>
+                <Icon name="check" />Backups réguliers pour éviter toute perte
+                de données
+              </li>
+              <li>
+                <Icon name="check" />Hébergement inclus
+              </li>
+              <li>
+                <Icon name="check" />Mises à jour GDPR et conformité légale
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="separator"></div>
+        <div class="card">
+          <div class="card-header">
+            <h3><Icon name="tranquilite" />Analyse & Optimisation</h3>
+          </div>
+          <div class="card-content">
+            <p>
+              Plongez dans des métriques détaillées et bénéficiez
+              d'optimisations SEO continues pour garder une longueur d'avance
+              sur vos concurrents.
+            </p>
+            <ul>
+              <li>
+                <Icon name="check" />Analytiques approfondies (Heatmap analyses)
+              </li>
+              <li>
+                <Icon name="check" />Référencement et citations locales
+              </li>
+              <li>
+                <Icon name="check" />Optimisation SEO (audits et optimisations
+                régulières)
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="separator"></div>
+        <div class="card">
+          <div class="card-header">
+            <h3><Icon name="tranquilite" />Tranquillité d'esprit</h3>
+          </div>
+          <div class="card-content">
+            <p>
+              Gardez l'esprit serein en sachant que votre site est sauvegardé,
+              hébergé et toujours conforme aux régulations les plus récentes.
+            </p>
+            <ul>
+              <li>
+                <Icon name="check" />Backups réguliers pour éviter toute perte
+                de données
+              </li>
+              <li>
+                <Icon name="check" />Hébergement inclus
+              </li>
+              <li>
+                <Icon name="check" />Mises à jour GDPR et conformité légale
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="separator"></div>
+        <div class="card">
+          <div class="card-header">
+            <h3><Icon name="tranquilite" />Tranquillité d'esprit</h3>
+          </div>
+          <div class="card-content">
+            <p>
+              Gardez l'esprit serein en sachant que votre site est sauvegardé,
+              hébergé et toujours conforme aux régulations les plus récentes.
+            </p>
+            <ul>
+              <li>
+                <Icon name="check" />Backups réguliers pour éviter toute perte
+                de données
+              </li>
+              <li>
+                <Icon name="check" />Hébergement inclus
+              </li>
+              <li>
+                <Icon name="check" />Mises à jour GDPR et conformité légale
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="separator"></div>
+        <div class="card">
+          <div class="card-header">
+            <h3><Icon name="tranquilite" />Tranquillité d'esprit</h3>
+          </div>
+          <div class="card-content">
+            <p>
+              Gardez l'esprit serein en sachant que votre site est sauvegardé,
+              hébergé et toujours conforme aux régulations les plus récentes.
+            </p>
+            <ul>
+              <li>
+                <Icon name="check" />Backups réguliers pour éviter toute perte
+                de données
+              </li>
+              <li>
+                <Icon name="check" />Hébergement inclus
+              </li>
+              <li>
+                <Icon name="check" />Mises à jour GDPR et conformité légale
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="bg-logo-wrapper">
+        <Image src={img} alt="Kooa" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../../../styles/utils.scss" as *;
+  section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    &.animate {
+      .light-bar {
+        scale: 1;
+        transition: scale 1s cubic-bezier(0.5, 0, 0.15, 1);
+      }
+      img {
+        scale: 1;
+        transition: scale 1s cubic-bezier(0.5, 0, 0.15, 1);
+      }
+      .bg-logo-wrapper {
+        img {
+          opacity: 1;
+          transition: opacity 1s cubic-bezier(0.5, 0, 0.15, 1);
+        }
+      }
+    }
+  }
+
+  .light {
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    .light-bar {
+      scale: 0 1;
+      height: 2px;
+      widtth: 100%;
+      background: rgb(244, 248, 252);
+      background: linear-gradient(
+        90deg,
+        rgba(244, 248, 252, 0) 0%,
+        rgba(244, 248, 252, 1) 50%,
+        rgba(244, 248, 252, 0) 100%
+      );
+    }
+    img {
+      // margin-left: 40px;
+      transform-origin: top;
+
+      scale: 0;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .container {
+    position: relative;
+  }
+  .heading {
+    display: flex;
+    flex-direction: column;
+    @include s(gap, 20, 20);
+    align-items: center;
+    margin-bottom: 50px;
+    h2.title {
+      width: 12ch;
+    }
+    p {
+      text-align: center;
+      max-width: 40ch;
+      @include s(font-size, 16, 16);
+    }
+    @media screen and (min-width: 1000px) {
+      flex-direction: row;
+      align-items: flex-end;
+      p {
+        text-align: left;
+        @include s(margin-bottom, -12, 12);
+        max-width: 36ch;
+      }
+    }
+  }
+  .bg-logo-wrapper {
+    display: none;
+    @media screen and (min-width: 901px) {
+      display: grid;
+      place-items: center;
+      position: absolute;
+      width: 100%;
+      right: 0;
+      min-width: 800px;
+      // svg {
+      //   @keyframes dash {
+      //     to {
+      //       fill: 90deg;
+      //     }
+      //   }
+
+      //   .path {
+      //     fill: url(#gradient);
+      //   }
+      // }
+
+      img {
+        opacity: 0;
+        left: 10%;
+        position: relative;
+        width: 120%;
+        height: auto;
+      }
+    }
+  }
+  .cards-wrapper {
+    margin-left: 40px;
+  }
+  .card {
+    padding-top: 32px;
+    padding-bottom: 26px;
+    width: 100%;
+    &.expanded {
+      h3 {
+        color: var(--clr-text-100);
+        svg {
+          fill: var(--clr-text-100);
+        }
+      }
+      .card-content {
+        transition: all 500ms cubic-bezier(0.5, 0, 0.15, 1);
+        opacity: 1;
+      }
+    }
+  }
+
+  .card-header {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: space-between;
+
+    h3 {
+      font-weight: 600;
+      @include s(font-size, 18, 20);
+      color: var(--clr-text-400);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      svg {
+        @include s(width, 18, 20);
+        height: auto;
+        fill: var(--clr-text-400);
+      }
+    }
+  }
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 4px;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 500ms cubic-bezier(0.5, 0, 0.15, 1);
+    p {
+      max-width: 37ch;
+      text-align: left;
+      margin-top: 12px;
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      li {
+        color: var(--clr-text-100);
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        line-height: 1.4;
+        svg {
+          @include s(max-width, 20, 18, false);
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 900px) {
+    section {
+      height: unset;
+    }
+    .separator {
+      height: 1px;
+      width: 100%;
+      background-color: var(--clr-text-100);
+      opacity: 0.1;
+    }
+    .line-wrapper {
+      display: none;
+    }
+    .cards-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin-left: unset;
+      width: 100%;
+      gap: 12px;
+      .card {
+        // background-color: var(--clr-bg-700);
+        // border-radius: var(--border-radius);
+        // border: 1px solid var(--clr-border);
+        // padding: 32px;
+      }
+      .card-header {
+        h3 {
+          color: var(--clr-text-100);
+          svg {
+            fill: var(--clr-text-100);
+          }
+        }
+      }
+      .card-content {
+        height: fit-content;
+        opacity: 1;
+
+        p {
+          max-width: 50ch;
+        }
+      }
+    }
+  }
+  .stepper-wrapper {
+    display: flex;
+    gap: 44px;
+    align-items: center;
+  }
+  .line-wrapper {
+    position: absolute;
+    height: 630px;
+    border-radius: 9999px;
+    width: 4px;
+    background-color: var(--clr-bg-700);
+    overflow: hidden;
+
+    .line {
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      background: rgb(244, 248, 252);
+      background: linear-gradient(
+        0deg,
+        rgba(244, 248, 252, 1) 0%,
+        rgba(244, 248, 252, 0) 100%
+      );
+      transform: translateY(-100%);
+    }
+  }
+</style>
+
+<script>
+  // @ts-nocheck
+  document.addEventListener("DOMContentLoaded", (event) => {
+    let activeCardIndex;
+    const allCards = document.querySelectorAll(".stepper-wrapper .card");
+    const lineElement = document.querySelector(".line");
+
+    const essentialSection = document.querySelector(".essential-section");
+    let essentialSectionHeight = essentialSection.offsetHeight;
+    let scrollTriggerInstance;
+
+    function openCard(index) {
+      const card = allCards[index];
+      const accordionContent = card.children[1];
+      card.classList.add("expanded");
+      accordionContent.style.height = accordionContent.scrollHeight + "px";
+
+      allCards.forEach((otherCard) => {
+        if (otherCard !== card) {
+          otherCard.classList.remove("expanded");
+          otherCard.children[1].style.height = 4 + "px";
+        }
+      });
+    }
+
+    function updateScrollAnimation(self) {
+      const sectionHeight = self.end - self.start;
+      const cardHeight = sectionHeight / 5;
+      const scrollPosition = self.progress * sectionHeight;
+      const translateYValue = -100 + 100 * self.progress;
+      lineElement.style.transform = `translateY(${translateYValue}%)`;
+
+      let cardIndex = Math.floor(scrollPosition / cardHeight);
+      if (activeCardIndex !== cardIndex && cardIndex < 5) {
+        activeCardIndex = cardIndex;
+        openCard(activeCardIndex);
+      }
+    }
+
+    function initScrollTrigger() {
+      if (window.innerWidth > 900) {
+        const cardContent =
+          document.querySelector(".card.expanded").children[1];
+        cardContent.style.height = cardContent.scrollHeight + "px";
+
+        scrollTriggerInstance = ScrollTrigger.create({
+          trigger: ".essential-section",
+          start: "top top",
+          end: `+=${essentialSectionHeight * 4}px`,
+          pin: true,
+          onUpdate: (self) => {
+            window.requestAnimationFrame(() => updateScrollAnimation(self));
+          },
+        });
+      }
+    }
+    function onResize() {
+      essentialSectionHeight = essentialSection.offsetHeight;
+
+      if (window.innerWidth <= 900 && scrollTriggerInstance) {
+        scrollTriggerInstance.kill(); // Deactivate ScrollTrigger
+        resetStyles(); // Reset styles related to animation
+        scrollTriggerInstance = null;
+      } else if (window.innerWidth > 900 && !scrollTriggerInstance) {
+        initScrollTrigger();
+      }
+    }
+
+    function resetStyles() {
+      allCards.forEach((card) => {
+        card.classList.add("expanded");
+        card.children[1].removeAttribute("style");
+      });
+      lineElement.style.transform = "translateY(-100%)";
+    }
+
+    initScrollTrigger(); // Initialize ScrollTrigger on page load
+    window.addEventListener("resize", onResize); // Listen for resize events
+  });
+</script>

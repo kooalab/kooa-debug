@@ -1,0 +1,259 @@
+---
+import Icon from "astro-icon";
+
+import { Image } from "astro:assets";
+
+const { isOpen, title, benefits, type, id, features, why } = Astro.props;
+
+const images = await Astro.glob(`../icons/*`).then((files) => {
+  return files.map((file) => file.default);
+});
+let image;
+images.forEach((img) => {
+  if (img.src.includes(id)) {
+    image = img;
+  }
+});
+---
+
+<div data-id={id} class="modal">
+  <div class="modal-wrapper">
+    <div class="modal-header">
+      <span class="type">Add-on de {type}</span>
+      <button
+        class="close-modal magnetic"
+        data-strength="30"
+        data-strength-text="20"
+        ><span class="btn-text"><Icon name="cross" /></span></button
+      >
+    </div>
+
+    <div class="modal-content" data-lenis-prevent>
+      <div class="title">
+        <Image src={image} alt="modal image" />
+        <h3>{title}</h3>
+      </div>
+      <div class="benefits">
+        <h4>Ce que vous obtenez</h4>
+        <p>
+          {benefits}
+        </p>
+      </div>
+      <div class="features">
+        <h4>Caractéristiques clés</h4>
+        <ul>
+          {
+            Array.isArray(features) &&
+              features.map((feature) => <li>{feature}</li>)
+          }
+        </ul>
+      </div>
+
+      <div class="why">
+        <h4>Pourquoi cet Add-on</h4>
+        <p>
+          {why}
+        </p>
+      </div>
+    </div>
+    <div class="more-questions">
+      <span>Vous avez plus de questions ?</span>
+      <a href="mailto:hello@kooa.ch">Contactez-nous</a>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../styles/utils.scss" as *;
+  .modal {
+    display: none;
+    visibility: hidden;
+    position: fixed;
+    inset: 0;
+    opacity: 0;
+    z-index: 101;
+    pointer-events: none;
+    transform: translateY(5vh);
+    transition:
+      opacity 600ms cubic-bezier(0.5, 0, 0.15, 1),
+      transform 600ms cubic-bezier(0.5, 0, 0.15, 1);
+    display: grid;
+    place-items: center;
+    @include s(font-size, 16, 16);
+    .modal-wrapper {
+      width: calc(100% - 32px);
+      height: fit-content;
+      max-height: calc(100svh - 32px);
+
+      @include s(max-width, 512, 550);
+      background-color: var(--clr-bg-700);
+      border-radius: calc(var(--border-radius) + 4px);
+      border: 1px solid var(--clr-border);
+      pointer-events: all;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      @include s(padding, 26, 30);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .type {
+        display: block;
+        color: var(--clr-text-100);
+        background-color: var(--clr-bg-900);
+        @include s(font-size, 14, 14);
+        border-radius: var(--border-radius);
+        @include s(height, 36, 36);
+        display: grid;
+        place-items: center;
+        padding-inline: 1.2em;
+        width: fit-content;
+      }
+    }
+    .modal-content {
+      overflow: auto;
+      height: 100%;
+      @include s(padding, 28, 40);
+      padding-top: 0 !important;
+      // mask: linear-gradient(red, red 90%, transparent);
+
+      /* For Firefox */
+      scrollbar-width: thin;
+      scrollbar-color: var(--clr-bg-900) var(--clr-bg-700);
+
+      /* For Chrome, Safari, and Opera */
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: var(--clr-bg-700);
+        border-radius: 9999px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--clr-bg-900);
+        border-radius: 9999px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: var(--clr-bg-900);
+      }
+      h4 {
+        font-weight: 500;
+        @include s(margin-bottom, 8, 8);
+      }
+      p,
+      li {
+        line-height: 1.5;
+      }
+
+      li {
+        @include s(margin-bottom, 8, 8);
+        hyphens: auto;
+        list-style-type: none;
+        position: relative;
+        padding-left: 1em; /* Adjust as needed */
+
+        &::before {
+          content: "•"; /* Bullet point character */
+          position: absolute;
+          left: 0;
+        }
+      }
+
+      .title {
+        display: flex;
+        align-items: center;
+        @include s(font-size, 20, 20);
+        @include s(margin-bottom, 20, 20);
+        margin-left: -0.7em;
+        h3 {
+          font-weight: 500;
+        }
+        img {
+          height: 3em;
+          width: auto;
+        }
+      }
+    }
+
+    .benefits,
+    .features {
+      @include s(margin-bottom, 20, 24);
+    }
+    .more-questions {
+      width: 100%;
+      background-color: var(--clr-bg-900);
+      display: flex;
+      flex-direction: column;
+      @include s(gap, 12, 12);
+      align-items: center;
+      @include s(padding, 24, 28);
+      @include s(font-size, 14, 15);
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        width: 96%;
+        left: 0;
+        top: 0;
+        pointer-events: none;
+        transform: translateY(-100%);
+        height: 50px;
+        background: rgb(15, 16, 20);
+        background: linear-gradient(
+          0deg,
+          rgba(15, 16, 20, 1) 0%,
+          rgba(15, 16, 20, 0) 100%
+        );
+      }
+      a {
+        $background-color: #07080b;
+        padding-inline: 0.1em;
+        margin-inline: -0.1em;
+        display: inline-block;
+        background: rgb(144, 108, 212);
+        background: linear-gradient(
+          132deg,
+          rgba(144, 108, 212, 1) 1%,
+          rgba(94, 50, 175, 1) 100%
+        );
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+    }
+
+    button.close-modal {
+      // position: absolute;
+      display: grid;
+      place-items: center;
+
+      // @include s(top, 20, 28);
+      // @include s(right, 20, 28);
+      @include s(height, 36, 36);
+      @include s(width, 36, 36);
+      background-color: var(--clr-bg-900);
+      border-radius: var(--border-radius);
+
+      svg {
+        @include s(width, 12, 12);
+        @include s(height, 12, 12);
+      }
+    }
+    &.transition {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+    &.is-open {
+      display: grid;
+    }
+  }
+</style>

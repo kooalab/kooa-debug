@@ -1,0 +1,166 @@
+---
+const { type, hero, mainTitle, accent, subTitle, align, bp, ...rest } =
+  Astro.props;
+import { Image } from "astro:assets";
+import star from "../assets/icons/star-white.svg";
+import swiss from "../assets/icons/swiss-flag.svg";
+---
+
+{
+  type === "homepage" ? (
+    <>
+      <h1 class="homepage">
+        {subTitle}
+        <Image src={swiss} alt="swiss flag" class="swiss-flag" />
+      </h1>
+      <h2 class="homepage">
+        {mainTitle + " "}
+        <span class="accent"> {accent}</span>
+      </h2>
+    </>
+  ) : type === "hero-website" ? (
+    // Hero Title for Other Pages
+    <h1 class="hero-website">
+      {mainTitle + " "}
+      <span class="accent"> {accent}</span>
+    </h1>
+  ) : type === "hero-support" ? (
+    // Hero Title for Other Pages
+    <h1 class="support-website">
+      {mainTitle + " "}
+      <span class="accent"> {accent}</span>
+    </h1>
+  ) : (
+    // Normal title
+    <div
+      class={`normal-title ${
+        align === "left" ? "align-left" : align === "right" ? "align-right" : ""
+      } `}
+    >
+      <span class="subtitle">
+        <Image src={star} alt="icon d'une étoile" />
+        {subTitle}
+      </span>
+      <h2 {...rest}>
+        {mainTitle + " "}
+        <span class="accent"> {accent}</span>
+      </h2>
+    </div>
+  )
+}
+<style lang="scss" define:vars={{ bp }}>
+  @use "../styles/utils.scss" as *;
+  h1,
+  h2 {
+    // text-transform: capitalize;
+  }
+  h1 {
+    &.homepage {
+      font-family: "Geist", sans-serif;
+      @include s(font-size, 15, 18);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      @include s(margin-bottom, 32, 32);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      .swiss-flag {
+        @include s(width, 22, 23);
+        height: auto;
+        margin-left: 0.3em;
+        margin-top: -0.1em;
+      }
+    }
+
+    &.hero-website {
+      text-align: center;
+      @include s(font-size, 32, 52);
+      @include s(margin-bottom, 40, 52);
+      max-width: 18ch;
+      span {
+        display: unset;
+      }
+      @media screen and (max-width: 450px) {
+        font-size: 8vw;
+      }
+    }
+    &.support-website {
+      text-align: center;
+      @include s(font-size, 32, 52);
+      @include s(margin-bottom, 40, 52);
+      max-width: 20ch;
+      span {
+        display: unset;
+      }
+      @media screen and (max-width: 450px) {
+        font-size: 8vw;
+      }
+    }
+  }
+  h2 {
+    &.homepage {
+      text-align: center;
+      @include s(font-size, 40, 70);
+      @include s(margin-bottom, 40, 52);
+      max-width: 15ch;
+      @media screen and (max-width: 450px) {
+        font-size: 10.8vw;
+      }
+    }
+  }
+
+  .normal-title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    @include s(gap, 20, 32);
+    h2 {
+      text-align: center;
+      @include s(font-size, 30, 40);
+      max-width: 20ch;
+      line-height: 1.08;
+    }
+    span.subtitle {
+      background-color: var(--clr-bg-700);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      font-weight: 700;
+      color: var(--clr-text-100);
+      border-radius: var(--border-radius);
+      @include s(padding-block, 12, 12);
+      @include s(padding-inline, 16, 16);
+      @include s(padding-top, 13, 13);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include s(gap, 10, 10);
+      @include s(font-size, 12, 14);
+      img {
+        @include s(width, 9, 11);
+        height: auto;
+        margin-top: -0.15em;
+      }
+    }
+
+    &.align-left {
+      @media screen and (min-width: 1000px) {
+        align-items: flex-start;
+        h2 {
+          text-align: left;
+          max-width: 15ch;
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  //@ts-nocheck
+  // gsap.fromTo(
+  //   "h2.homepage",
+  //   { yPercent: 100 },
+  //   { yPercent: 0, duration: 1.5, delay: 2 },
+  // );
+</script>

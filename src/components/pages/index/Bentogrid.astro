@@ -1,0 +1,409 @@
+---
+import { Image } from "astro:assets";
+
+import firstCard from "../../../assets/first-card.svg";
+import secondCard from "../../../assets/second-card.svg";
+import thirdCard from "../../../assets/third-card.svg";
+import thirdCardLS from "../../../assets/third-card-ls.svg";
+import fourthCard from "../../../assets/fourth-card.svg";
+import fifthCard from "../../../assets/fifth-card.svg";
+import fifthCardEffect from "../../../assets/fifth-card-effect.svg";
+---
+
+<div class="bento-container swiper">
+  <div id="slider" class="slider swiper-wrapper">
+    <div class="card card-a swiper-slide">
+      <Image src={firstCard} alt="Accès à des experts" />
+      <h3>Accès direct à des experts</h3><p>
+        Besoin d'aide ou d'informations ? Nous sommes à votre écoute à tout
+        instant.
+      </p>
+    </div>
+    <div class="card card-b swiper-slide">
+      <div class="img-wrapper">
+        <div class="lines-wrapper">
+          <div class="line1"><div class="meteorite"></div></div>
+          <div class="line2"><div class="meteorite"></div></div>
+          <div class="line3"><div class="meteorite"></div></div>
+          <div class="line4"><div class="meteorite"></div></div>
+          <div class="line5"><div class="meteorite"></div></div>
+        </div>
+        <Image src={secondCard} alt="Accès à des experts" />
+      </div>
+      <h3>Réactivité rapide</h3><p>
+        Toute assistance nécessaire est à portée de main. Un simple message
+        suffit.
+      </p>
+    </div>
+    <div class="card card-c swiper-slide">
+      <Image src={thirdCard} alt="Sécurisé et fiable" />
+      <Image
+        class="light-source o-e"
+        src={thirdCardLS}
+        alt=""
+        data-action="vs"
+      />
+      <h3>Sécurisé et fiable</h3><p>
+        Concentrez-vous sur votre entreprise, nous nous chargeons de la sécurité
+        de votre site.
+      </p>
+    </div>
+    <div class="card card-d swiper-slide">
+      <Image src={fourthCard} alt="" />
+      <h3>Stratégie centrée sur les données</h3><p>
+        Obtenez des bilans mensuels pour savoir où concentrer vos efforts.
+      </p>
+    </div>
+    <div class="card card-e swiper-slide">
+      <div class="receipt-container"><Image src={fifthCard} alt="" /></div>
+
+      <div class="effects-container">
+        <Image src={fifthCardEffect} alt="" />
+      </div><h3>Coûts prévisibles</h3><p>
+        Tous les services inclus dans un forfait mensuel de 12 mois, sans coûts
+        cachés.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../../../styles/utils.scss" as *;
+
+  .bento-container {
+    width: 100%;
+    height: fit-content;
+    // @include s(margin-bottom, 120, 120);
+
+    .slider {
+      // display: flex;
+      // flex-wrap: nowrap;
+      // -webkit-overflow-scrolling: touch;
+      // overflow-x: auto;
+      // height: 22rem;
+      // scroll-snap-type: x mandatory;
+      // cursor: grab;
+      // @include s(gap, 12, 12);
+
+      @media (min-width: 53.125rem) {
+        @include s(gap, 12, 12);
+        @include s(font-size, 16, 16);
+        height: unset;
+        cursor: unset;
+        display: grid;
+        overflow-x: visible;
+        scroll-snap-type: none;
+        @include s(max-width, 1064, 1064);
+        margin-inline: auto;
+        grid-template:
+          "a a b"
+          "c d d"
+          "c e e";
+
+        grid-template-columns: 31% 18% 48%; /* Replace with your desired column widths */
+        grid-template-rows: 18.75em 11.5em 11.5em;
+      }
+    }
+    // .slider::-webkit-scrollbar {
+    //   display: none;
+    // }
+
+    // // Hide scrollbar for IE, Edge and Firefox
+    // .slider {
+    //   -ms-overflow-style: none; /* IE and Edge */
+    //   scrollbar-width: none; /* Firefox */
+    // }
+    // .slider.grabbing {
+    //   cursor: grabbing;
+    // }
+
+    .card {
+      flex-shrink: 0;
+      // scroll-snap-align: start;
+      width: 80%;
+      max-width: 22.5rem;
+      height: 20rem;
+      background-color: var(--clr-bg-700);
+      border-radius: calc(var(--border-radius) + 1px);
+      border: 1px solid rgba(243, 247, 252, 0.03);
+      // scroll-snap-stop: always;
+      overflow: hidden;
+      position: relative;
+      @include s(padding-inline, 22, 34);
+      @include s(padding-block, 28, 34);
+      @include s(gap, 4, 4);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      h3 {
+        font-weight: 700;
+        position: relative;
+        @include s(font-size, 17, 20);
+        line-height: 1.44;
+      }
+      p {
+        position: relative;
+        line-height: 1.44;
+        max-width: 30ch;
+      }
+      img,
+      svg {
+        max-width: 170%;
+        height: auto;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      &.card-b {
+        .img-wrapper {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .lines-wrapper {
+          position: absolute;
+          top: 0;
+          left: -20%;
+          width: 140%;
+          height: 100%;
+          overflow: hidden;
+          pointer-events: none;
+          // background-color: red;
+          display: flex;
+          align-items: center;
+          @include s(gap, 13, 18);
+          flex-direction: column;
+          justify-content: center;
+
+          &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgb(15, 16, 20);
+            background: linear-gradient(
+              90deg,
+              rgba(15, 16, 20, 1) 0%,
+              rgba(15, 16, 20, 0) 50%,
+              rgba(15, 16, 20, 1) 100%
+            );
+            z-index: 1;
+          }
+          .line1,
+          .line2,
+          .line3,
+          .line4,
+          .line5 {
+            width: 100%;
+            height: 1px;
+            background-color: #15171d;
+            .meteorite {
+              height: 1px;
+              width: 100%;
+              background: rgb(15, 16, 20);
+              background: linear-gradient(
+                90deg,
+                rgba(15, 16, 20, 0) 95%,
+                rgba(244, 248, 252, 1) 100%
+              );
+              border-radius: 999px;
+              animation: moveMeteorite 5s linear infinite;
+            }
+          }
+          .line1 .meteorite {
+            animation-delay: 0s;
+          }
+
+          .line2 .meteorite {
+            animation-delay: 0.5s;
+          }
+
+          .line3 .meteorite {
+            animation-delay: 2s;
+          }
+
+          .line4 .meteorite {
+            animation-delay: 0.8s;
+          }
+
+          .line5 .meteorite {
+            animation-delay: 3s;
+          }
+
+          @keyframes moveMeteorite {
+            0% {
+              transform: translateX(-100%);
+            }
+            100% {
+              transform: translateX(0);
+            }
+          }
+        }
+        img {
+          top: 52%;
+          left: 50%;
+          @include s(height, 230, 260);
+          transform: translate(-50%, -50%);
+          z-index: 2;
+        }
+      }
+      &.card-c {
+        img,
+        svg {
+          max-width: 20rem;
+          top: -1.5625rem;
+        }
+        img.light-source {
+          scale: 0 1;
+          opacity: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 0;
+          transform-origin: top left;
+          &.animate {
+            scale: 1.2 1;
+            opacity: 1;
+            transition:
+              scale 1s cubic-bezier(0.5, 0, 0.15, 1),
+              opacity 1s cubic-bezier(0.5, 0, 0.15, 1);
+          }
+        }
+      }
+      &.card-d {
+        justify-content: flex-start;
+        h3 {
+          line-height: 1.44;
+        }
+        img {
+          width: 110%;
+          min-width: 19rem;
+          max-width: 20.625rem;
+          top: unset;
+          bottom: -2rem;
+          left: 66%;
+        }
+      }
+      &.card-e {
+        justify-content: flex-start;
+        overflow: unset;
+        .effects-container {
+          inset: 0;
+          position: absolute;
+          overflow: hidden;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          border-radius: var(--border-radius);
+          img {
+            width: 110%;
+            position: absolute;
+            bottom: -15%;
+            top: unset;
+            left: -4%;
+            transform: unset;
+          }
+        }
+        .receipt-container {
+          img {
+            z-index: 2;
+            width: 120%;
+            min-width: 9.375rem;
+            top: unset;
+            bottom: -1.875rem;
+            max-width: 21.875rem;
+          }
+        }
+      }
+      @media (min-width: 53.125rem) {
+        scroll-snap-align: none;
+        flex: none;
+        width: 100%;
+        height: 100%;
+        max-width: unset;
+        img {
+          max-width: 100%;
+        }
+        &.card-a {
+          img {
+            width: 100%;
+          }
+          // max-width: 100%;
+          grid-area: a;
+        }
+        &.card-b {
+          img,
+          svg {
+          }
+          grid-area: b;
+        }
+        &.card-c {
+          img,
+          svg {
+            top: 0;
+            width: 95%;
+            @include s(max-width, 400, 400);
+          }
+
+          grid-area: c;
+        }
+        &.card-d {
+          img {
+            width: 48%;
+            @include s(max-width, 313, 313);
+            max-width: unset;
+            left: 85%;
+            bottom: -2.9em;
+            top: unset;
+          }
+          grid-area: d;
+        }
+        &.card-e {
+          grid-area: e;
+          overflow: visible;
+          .receipt-container {
+            position: absolute;
+            display: flex;
+            justify-content: flex-end;
+            inset: 0 0 -2em 0;
+            @include s(padding-inline, 30, 30);
+            align-items: flex-start;
+            overflow: hidden;
+            img {
+              left: unset;
+              transform: unset;
+              bottom: unset;
+              position: relative;
+              @include s(top, -20, -15);
+              max-width: unset;
+              width: 55%;
+              @include s(right, -80, -90);
+              @include s(min-width, 350, 350);
+            }
+          }
+          .effects-container {
+            display: flex;
+            justify-content: flex-end;
+            img {
+              width: 110%;
+              top: 0;
+              width: 50%;
+              height: 100%;
+              @include s(right, -45, -62);
+              position: absolute;
+              left: unset;
+              transform: unset;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>

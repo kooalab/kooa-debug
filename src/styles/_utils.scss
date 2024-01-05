@@ -1,0 +1,60 @@
+@use "sass:math";
+
+//Retourne le chiffre en REM sans les 'units'
+@function r($pixel) {
+    @if math.is-unitless($pixel) {
+        @return math.div($pixel, 16);
+    } @else {
+        @error 'Don\'t use units when using rem()';
+    }
+}
+
+//Retourne le chiffre ne REM avec 'units'
+@function rem($pixel) {
+    @if math.is-unitless($pixel) {
+        @return math.div($pixel, 16) + rem;
+    } @else {
+        @error 'Don\'t use units when using rem()';
+    }
+}
+
+$scalingFactor: 0.2;
+@mixin s($property-name, $startingSize, $endingSize1k, $max: true, $startingTriggerWidth: 480, $GoalWidth1k: 1512) {
+    $startingTriggerWidthREM: math.div($startingTriggerWidth, 16);
+    $goalWidth1kREM: math.div($GoalWidth1k, 16);
+    $startingSizeREM: math.div($startingSize, 16);
+    $endingSize1kREM: math.div($endingSize1k, 16);
+
+    $StartingTriggerWidth1k: $goalWidth1kREM;
+    $goalWidth4k: r(3024);
+    $endingSize4k: $endingSize1kREM * (1 + $scalingFactor);
+    $startingSize1k: $endingSize1kREM;
+
+    $fluidSizeBefore1k: calc(
+        (
+                ((100vw - #{$startingTriggerWidthREM + rem}) / (#{$goalWidth1kREM} - #{$startingTriggerWidthREM})) *
+                    (#{$endingSize1kREM} - #{$startingSizeREM})
+            ) + #{$startingSizeREM + rem}
+    );
+
+    $fluidSizeAt1k: calc(
+        (
+                ((100vw - #{$StartingTriggerWidth1k + rem}) / (#{$goalWidth4k} - #{$StartingTriggerWidth1k})) *
+                    (#{$endingSize4k} - #{$startingSize1k})
+            ) + #{$startingSize1k + rem}
+    );
+
+    @if $max == true {
+        #{$property-name}: max(#{$startingSizeREM + rem}, #{$fluidSizeBefore1k});
+
+        @media screen and (min-width: #{$goalWidth1kREM + rem}) {
+            #{$property-name}: max(#{$startingSize1k + rem}, #{$fluidSizeAt1k});
+        }
+    } @else if $max == false {
+        #{$property-name}: min(#{$startingSizeREM + rem}, #{$fluidSizeBefore1k});
+
+        @media screen and (min-width: #{$goalWidth1kREM + rem}) {
+            #{$property-name}: min(#{$startingSize1k + rem}, #{$fluidSizeAt1k});
+        }
+    }
+}

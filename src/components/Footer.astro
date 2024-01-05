@@ -1,0 +1,402 @@
+---
+import { Image } from "astro:assets";
+import Button from "../components/Button.astro";
+import location from "../assets/icons/location.svg";
+import dribbble from "../assets/icons/dribbble.svg";
+import insta from "../assets/icons/instagram.svg";
+import awwwards from "../assets/icons/awwwards.svg";
+import xSocial from "../assets/icons/x-social.svg";
+import starGrey from "../icons/star.svg";
+
+import Icon from "astro-icon";
+---
+
+<footer>
+  <div class="o-e" data-action="contact-marquee"></div>
+  <div class="upper-container">
+    <div class="left-container">
+      <button
+        class="contact-us contact-button magnetic"
+        data-strength="100"
+        aria-label="Prendre contact"
+      >
+        <div class="button-content" aria-disabled="true">
+          <div style="display: flex;">
+            <span>
+              Prendre contact <Icon name="star-white" alt="" />
+            </span>
+            <span>
+              Prendre contact <Icon name="star-white" alt="" />
+            </span>
+          </div>
+          <div style="display: flex;">
+            <span>
+              Prendre contact <Icon name="star-white" alt="" />
+            </span>
+            <span>
+              Prendre contact <Icon name="star-white" alt="" />
+            </span>
+          </div>
+        </div>
+      </button>
+      <div class="address">
+        <Image src={location} alt="icon de location" />Winterholzstrasse 55,
+        3018 Bern
+      </div>
+    </div>
+    <div class="right-container">
+      <h4>
+        Inscrivez-vous à la newsletter <span class="accent"> de KOOA.</span>
+      </h4>
+      <p>
+        Recevez les dernières actualités, articles et ressources directement
+        dans votre boîte de réception.
+      </p>
+      <form name="newsletter">
+        <div class="wrapper" data-name="E-mail">
+          <label aria-disabled="true" for="emailNews">E-mail *</label>
+          <input
+            type="email"
+            id="emailNews"
+            name="email"
+            aria-label="E-mail"
+            required
+          />
+        </div>
+        <Button type="submit" text="S'abonner" />
+      </form>
+      <div class="social-icons">
+        <a href="#" aria-label="X social" class="magnetic" data-strength="20">
+          <Image src={xSocial} alt="icon de X" /></a
+        >
+        <a href="" aria-label="Awwwards" class="magnetic" data-strength="20">
+          <Image src={awwwards} alt="icon de awwwards" /></a
+        >
+        <a href="" aria-label="Instagram" class="magnetic" data-strength="20">
+          <Image src={insta} alt="icon de instagram" /></a
+        >
+        <a href="" aria-label="Dribbble" class="magnetic" data-strength="20">
+          <Image src={dribbble} alt="icon de dribbble" /></a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="lower-container">
+    <div class="upper wrapper">
+      <p class="copy">© 2024 KOOA. Tous droits réservés.</p>
+      <a href="" class="condition">Conditions Générales</a>
+    </div>
+    <div class="lower wrapper">
+      <span class="lang">FR</span>
+
+      <Icon name="star" class="star" />
+      <a href="" class="politique">Politique de confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<style lang="scss">
+  @use "../styles/utils.scss" as *;
+
+  footer {
+    position: relative;
+    @include s(margin, 16, 16);
+    display: flex;
+    flex-direction: column;
+    @include s(gap, 10, 10);
+    @include s(margin-bottom, 88, 100);
+
+    @media screen and (min-width: 715px) {
+      @include s(margin-bottom, 12, 12);
+    }
+  }
+  [data-action="contact-marquee"] {
+    position: absolute;
+    top: -150%;
+  }
+  .upper-container {
+    display: flex;
+    flex-direction: column;
+    @include s(gap, 10, 10);
+
+    @media screen and (min-width: 62.5rem) {
+      flex-direction: row;
+    }
+  }
+  .left-container,
+  .right-container,
+  .lower-container {
+    background-color: var(--clr-bg-700);
+    border-radius: calc(var(--border-radius) + 3px);
+
+    overflow: hidden;
+  }
+
+  .left-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @include s(gap, 12, 12);
+
+    @include s(padding-bottom, 38, 56);
+
+    box-sizing: border-box;
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: rgb(15, 16, 20);
+      // background-color: red;
+      z-index: 1;
+      background: linear-gradient(
+        90deg,
+        rgba(15, 16, 20, 1) 0%,
+        rgba(15, 16, 20, 0) 15%,
+        rgba(15, 16, 20, 0) 85%,
+        rgba(15, 16, 20, 1) 100%
+      );
+    }
+    @keyframes scroll {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+    button.contact-us {
+      max-width: 100%;
+      // outline: 3px solid green;
+      @include s(padding-block, 52, 84);
+      @include s(font-size, 42, 84);
+      transition: color 0.3s cubic-bezier(0.5, 0, 0.15, 1);
+      @media (hover: hover) {
+        &:hover {
+          color: var(--clr-text-400);
+          svg {
+            fill: var(--clr-text-400);
+          }
+        }
+      }
+      .button-content {
+        display: flex;
+        width: max-content;
+
+        will-change: transform;
+        // transform: translateX(-50%);
+
+        &.animate {
+          animation: scroll 10s linear infinite;
+        }
+      }
+      span {
+        transform: translateZ(0.1px);
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+      }
+      svg {
+        @include s(width, 21, 42);
+        height: auto;
+        margin-inline: 0.5em;
+        fill: var(--clr-text-100);
+        transition: fill 0.3s cubic-bezier(0.5, 0, 0.15, 1);
+      }
+    }
+
+    .address {
+      display: flex;
+      @include s(gap, 8, 8);
+      justify-content: center;
+      color: var(--clr-text-400);
+      @include s(font-size, 15, 16);
+      img {
+        @include s(min-width, 16, 16);
+        height: auto;
+      }
+    }
+  }
+
+  .right-container {
+    @include s(padding-block, 38, 56);
+    @include s(padding-inline, 28, 64);
+    flex: 1;
+    container-name: container;
+    container-type: inline-size;
+    @include s(font-size, 16, 16);
+    form {
+      display: flex;
+      flex-direction: column;
+      @include s(gap, 12, 12);
+      @include s(margin-top, 32, 32);
+      @include s(margin-bottom, 40, 40);
+
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        @include s(gap, 8, 8);
+        position: relative;
+        @include s(font-size, 16, 16);
+        &.focused label {
+          transform: translateY(-0.55em) scale(0.8);
+          color: #676970;
+
+          /* Adjust the translateY and scale values as needed */
+        }
+        label {
+          position: absolute;
+          z-index: 1;
+          @include s(top, 18, 19);
+          @include s(left, 16, 16);
+          color: hsl(225, 11%, 15%);
+          transition: transform 200ms ease-in;
+          transform-origin: top left;
+          // pointer-events: none;
+        }
+
+        input {
+          background-color: var(--clr-bg-900);
+          @include s(padding-top, 24, 24);
+          @include s(padding-bottom, 12, 12);
+          @include s(padding-inline, 16, 16);
+
+          border-radius: var(--border-radius);
+          color: var(--clr-text-100);
+          position: relative;
+          border: 1px solid transparent;
+          transition: border 300ms ease-in;
+          width: 100%;
+          @include s(font-size, 16, 16);
+          &:focus {
+            outline: none !important;
+            border: 1px solid var(--clr-text-100);
+          }
+        }
+      }
+    }
+    h4 {
+      font-family: "Outfit", system-ui, sans-serif;
+      line-height: 1.3;
+      @include s(margin-bottom, 8, 8);
+      @include s(font-size, 16, 18);
+    }
+    p {
+      hyphens: auto;
+      max-width: 40ch;
+    }
+    .social-icons {
+      display: flex;
+      @include s(gap, 16, 16);
+      a {
+        padding: 8px;
+        // background-color: red;
+      }
+      img {
+        @include s(height, 16, 16);
+        width: auto;
+      }
+    }
+  }
+
+  .lower-container {
+    @include s(padding-block, 32, 42);
+    @include s(padding-inline, 28, 52);
+    @include s(font-size, 12, 14);
+    display: flex;
+    justify-content: space-between;
+    color: var(--clr-text-400);
+    a {
+      transition: color 0.3s cubic-bezier(0.5, 0, 0.15, 1);
+
+      @media (hover: hover) {
+        &:hover {
+          color: var(--clr-text-100);
+        }
+      }
+    }
+    .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+
+      @include s(gap, 20, 20);
+
+      &.upper {
+        align-items: flex-start;
+        width: 15ch;
+      }
+      &.lower {
+        align-items: flex-end;
+      }
+    }
+    svg.star {
+      display: none;
+    }
+
+    span.lang {
+      color: var(--clr-text-100);
+      grid-area: b;
+      text-align: right;
+      margin-top: 0.2em;
+    }
+
+    .copy {
+      text-wrap: nowrap;
+      white-space: nowrap;
+    }
+    .condition {
+      text-align: left;
+    }
+    .politique {
+      text-align: right;
+    }
+
+    @media screen and (min-width: 1050px) {
+      @include s(gap, 20, 20);
+      .wrapper {
+        flex-direction: row;
+
+        &.upper {
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+        }
+        &.lower {
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: row-reverse;
+        }
+      }
+      svg.star {
+        display: block;
+        width: 11px;
+        fill: var(--clr-text-400);
+      }
+
+      span.lang {
+      }
+      .condition {
+        text-align: right;
+        width: fit-content;
+        text-wrap: nowrap;
+      }
+      .politique {
+        text-align: right;
+        text-wrap: nowrap;
+      }
+    }
+  }
+  @container container (min-width: 31.25rem) {
+    .right-container {
+      form {
+        flex-direction: row;
+
+        input {
+          min-width: 30ch;
+        }
+      }
+    }
+  }
+</style>

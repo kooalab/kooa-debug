@@ -1,0 +1,100 @@
+---
+import Icon from "astro-icon";
+import { Image } from "astro:assets";
+import img2 from "../../../icons/1page-icon.svg";
+
+const { title, description, iconName } = Astro.props;
+const images = await Astro.glob(`../../../icons/*`).then((files) => {
+  return files.map((file) => file.default);
+});
+let image;
+images.forEach((img) => {
+  if (img.src.includes(iconName)) {
+    image = img;
+  }
+});
+---
+
+<div class="embla__slide">
+  <div class="embla__slide__content">
+    <!-- <Icon class="icon" name={iconName} /> -->
+    <Image src={image} alt="" />
+    <h4>{title}</h4>
+    <p>{description}</p>
+    <button
+      class="modal-open-button magnetic"
+      data-strength="20"
+      data-modal={iconName}>En savoir plus <Icon name="right-arrow" /></button
+    >
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../../../styles/utils.scss" as *;
+  .embla__slide {
+    flex-shrink: 0;
+    min-width: 0;
+    @include s(padding-left, 12, 12);
+    position: relative;
+  }
+
+  .embla__slide__content {
+    @include s(width, 312, 348);
+    @include s(height, 243, 263);
+    background-color: var(--clr-bg-700);
+    border-radius: calc(var(--border-radius) + 2px);
+    @include s(padding, 30, 35);
+    border: 1px solid var(--clr-border);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    h4 {
+      font-weight: 500;
+      @include s(font-size, 18, 20);
+    }
+
+    svg.icon {
+      position: relative;
+      @include s(top, -15, -17);
+      @include s(left, -15, -17);
+
+      @include s(height, 60, 60);
+      width: auto;
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      @include s(padding, 12, 12);
+      @include s(margin-left, -12, -12);
+      @include s(margin-bottom, -12, -12);
+      transition: color 0.3s cubic-bezier(0.5, 0, 0.15, 1);
+      @media (hover: hover) {
+        &:hover {
+          color: var(--clr-text-400);
+          svg[astro-icon="right-arrow"] {
+            fill: var(--clr-text-400);
+          }
+        }
+      }
+    }
+    svg[astro-icon="right-arrow"] {
+      @include s(width, 16, 16);
+      @include s(height, 16, 16);
+      @include s(margin-left, 8, 8);
+      pointer-events: none;
+      fill: #f4f8fc;
+      transition: fill 0.3s cubic-bezier(0.5, 0, 0.15, 1);
+    }
+  }
+</style>
+
+<!-- <script>
+  //@ts-nocheck
+  import { initializeModalButtons } from "../../../js/open-modal";
+
+  document.addEventListener("DOMContentLoaded", (event) => {
+    initializeModalButtons();
+  });
+</script> -->

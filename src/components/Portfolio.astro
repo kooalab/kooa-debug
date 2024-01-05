@@ -1,0 +1,220 @@
+---
+import { Image } from "astro:assets";
+import Title from "./Title.astro";
+import stars from "../assets/stars-final.jpg";
+---
+
+<section class="portfolio">
+  <div class="stars-bg">
+    <div class="stars">
+      <Image
+        widths={[720, 1000, stars.width]}
+        loading={"eager"}
+        src={stars}
+        alt="Stars in the univers"
+      />
+    </div>
+    <div class="overlay-box">
+      <div class="overlay o-e"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="heading">
+      <Title
+        mainTitle="Dernières Réalisation faites "
+        accent="par KOOA"
+        subTitle="Portfolio"
+      />
+    </div>
+
+    <div class="portfolio-wrapper">
+      <div class="project"></div>
+      <div class="project"></div>
+      <div class="project"></div>
+      <div class="project desktop"></div>
+      <div class="project desktop"></div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../styles/utils.scss" as *;
+  .portfolio {
+    position: relative;
+    z-index: -1;
+    @include s(margin-top, -330, -380, false);
+    .stars-bg {
+      pointer-events: none;
+      position: absolute;
+      @include s(height, 500, 600);
+      width: 100%;
+      //   @include s(top, -0, -0, false);
+      top: 0;
+      margin-inline: auto;
+      overflow-x: hidden;
+      .stars {
+        width: 100%;
+        height: 100%;
+        // background-color: red;
+        clip-path: polygon(
+          17% 70%,
+          24% 87%,
+          26% 61%,
+          34% 80%,
+          43% 67%,
+          48% 88%,
+          55% 58%,
+          59% 92%,
+          66% 64%,
+          71% 81%,
+          75% 59%,
+          78% 81%,
+          86% 89%,
+          88% 67%,
+          100% 86%,
+          100% 70%,
+          100% 0,
+          0 0,
+          0 70%,
+          12% 84%
+        );
+        overflow: hidden;
+        opacity: 1;
+        position: absolute;
+
+        // animation: opaAnim 3s ease-in forwards;
+        img {
+          // background-color: red;
+          width: 95%;
+          margin-inline: auto;
+          height: 90%;
+          object-fit: cover;
+          object-position: top center;
+        }
+      }
+
+      .overlay-box {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        @include s(height, 500, 600);
+        clip-path: polygon(
+          17% 70%,
+          24% 87%,
+          26% 61%,
+          34% 80%,
+          43% 67%,
+          48% 88%,
+          55% 58%,
+          59% 92%,
+          66% 64%,
+          71% 81%,
+          75% 59%,
+          78% 81%,
+          86% 89%,
+          88% 67%,
+          100% 86%,
+          100% 70%,
+          100% 0,
+          0 0,
+          0 70%,
+          12% 84%
+        );
+        .overlay {
+          pointer-events: none;
+          background-image: url("../assets/overlay.png");
+          background-repeat: repeat;
+
+          width: 200%;
+          // background-color: red;
+          position: absolute;
+          opacity: 1;
+          top: 0;
+          // background-color: red;
+          @include s(height, 500, 600);
+
+          &.animate {
+            animation: move-overlay 40s linear infinite;
+            @media screen and (max-width: 849px) {
+              animation-duration: 20s;
+            }
+          }
+        }
+      }
+    }
+    .container {
+      position: relative;
+    }
+    .heading {
+      @include s(max-width, 300, 400);
+      margin-inline: auto;
+      position: relative;
+    }
+
+    .portfolio-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      @include s(margin-top, 70, 70);
+      @include s(font-size, 16, 16);
+      .project {
+        background-color: var(--clr-bg-700);
+        border-radius: calc(var(--border-radius) + 2px);
+        border: 1px solid var(--clr-border);
+      }
+      @media screen and (min-width: 850px) {
+        display: grid;
+        grid-template:
+          "a a"
+          "b c"
+          "d e";
+
+        grid-template-columns: 1fr 1fr; /* Replace with your desired column widths */
+        grid-template-rows: 30em 23em 23em;
+
+        .project:nth-child(1) {
+          grid-area: a;
+        }
+        .project:nth-child(2) {
+          grid-area: b;
+        }
+        .project:nth-child(3) {
+          grid-area: c;
+        }
+        .project:nth-child(4) {
+          grid-area: d;
+        }
+        .project:nth-child(5) {
+          grid-area: e;
+        }
+      }
+      @media screen and (max-width: 849px) {
+        .project {
+          width: 100%;
+          height: auto;
+          background-color: var(--clr-bg-700);
+          border-radius: calc(var(--border-radius) + 2px);
+          border: 1px solid var(--clr-border);
+          position: relative;
+          &.desktop {
+            display: none;
+          }
+
+          /* Fallback for browsers that do not support aspect-ratio */
+          &::before {
+            content: "";
+            display: block;
+            padding-top: 100%; /* Aspect ratio 1:1 */
+          }
+          /* Modern browsers: aspect-ratio property */
+          @supports (aspect-ratio: 1 / 1) {
+            aspect-ratio: 1 / 1;
+            &::before {
+              display: none; /* Hide the pseudo-element in browsers that support aspect-ratio */
+            }
+          }
+        }
+      }
+    }
+  }
+</style>

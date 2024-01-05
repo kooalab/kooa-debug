@@ -1,0 +1,49 @@
+---
+const { phrase1, phrase2, phrase3 } = Astro.props;
+---
+
+<section class="paragraph-section">
+  <div class="container">
+    <p class="paragraph split-to-words">
+      {phrase1 && <span>{phrase1}</span>}
+      {phrase2 && <span>{phrase2}</span>}
+      {phrase3 && <span>{phrase3}</span>}
+    </p>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../../../styles/utils.scss" as *;
+
+  section {
+    height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    p.paragraph {
+      text-align: center;
+      @include s(font-size, 20, 26);
+      line-height: 2.2;
+      max-width: 25ch;
+
+      span {
+        color: var(--clr-text-100);
+        opacity: 1;
+        transition: opacity 1300ms cubic-bezier(0.5, 0, 0.15, 1);
+        font-weight: 600;
+      }
+
+      @media screen and (min-width: 56.25rem) {
+        line-height: 1.84;
+        max-width: 30ch;
+      }
+    }
+  }
+</style>

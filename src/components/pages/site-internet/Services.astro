@@ -1,0 +1,285 @@
+---
+import { Image } from "astro:assets";
+import Icon from "astro-icon";
+// import unique from "../assets/icons/unique.svg";
+// import support from "../assets/icons/support.svg";
+// import devis from "../assets/icons/devis.svg";
+// import arrow from "../assets/icons/right-arrow.svg";
+import Title from "../../Title.astro";
+import Button from "../../Button.astro";
+---
+
+<section>
+  <div class="container">
+    <div class="heading">
+      <Title
+        align="left"
+        mainTitle="Nos services"
+        accent="sur Mesure"
+        subTitle="Features"
+      />
+      <p>
+        Découvrez nos trois piliers essentiels: Tarification totalement
+        transparente, conception sur mesure et support inégalé.
+      </p>
+    </div>
+
+    <div class="bento-container">
+      <div class="card card-a">
+        <div class="icon">
+          <Icon name="performance-optimisee" />
+        </div>
+        <div class="wrapper">
+          <h3>Performance optimisée</h3><p>
+            Chargez votre site en un éclair et gardez vos visiteurs.
+          </p>
+        </div>
+      </div>
+      <div class="card card-b">
+        <div class="icon">
+          <Icon name="conformite-legal" />
+          <!-- <Image src={unique} alt="" /> -->
+        </div>
+        <div class="wrapper">
+          <h3>Conformité légale</h3><p>
+            Aspects légaux de votre site gérés pour votre tranquillité.
+          </p>
+        </div>
+      </div>
+      <div class="card card-c">
+        <div class="icon">
+          <Icon name="roi-maximise" />
+          <!-- <Image src={support} alt="" /> -->
+        </div>
+        <div class="wrapper">
+          <h3>ROI maximisé</h3><p>
+            Transformez chaque clic en un client potentiel et optimisez les
+            coûts.
+          </p>
+        </div>
+      </div>
+      <div class="card card-d">
+        <div class="icon">
+          <Icon name="integration-sur-mesure" />
+          <!-- <Image src={support} alt="" /> -->
+        </div>
+        <div class="wrapper">
+          <h3>Intégrations Sur-Mesure</h3><p>
+            Connectez vos outils préférés pour une expérience fluide.
+          </p>
+        </div>
+      </div>
+      <div class="card card-e">
+        <div class="icon">
+          <Icon name="analyses-approfondie" />
+          <!-- <Image src={support} alt="" /> -->
+        </div>
+        <div class="wrapper">
+          <h3>Analyses approfondies</h3><p>
+            Prenez des décisions éclairées grâce à des données riches et
+            exploitables.
+          </p>
+        </div>
+      </div>
+      <div class="card card-f">
+        <div class="icon">
+          <Icon name="support-continu" />
+          <!-- <Image src={support} alt="" /> -->
+        </div>
+        <div class="wrapper">
+          <div class="left-wrapper">
+            <h3>Support Continu</h3><p>
+              12 mois de mises à jour et support complet inclus.
+            </p>
+          </div>
+          <div class="right-wrapper">
+            <Icon name="right-arrow-short" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="revue-container">
+      <div class="wrapper">
+        <h3>Planifiez Maintenant Votre Analyse Gratuite de 15 Minutes</h3>
+        <p>
+          Boostez votre site avec nos conseils experts gratuits. Élevez votre
+          présence en ligne dès aujourd'hui !
+        </p>
+      </div>
+
+      <Button link="https://www.google.com" text="Planifiez votre revue" />
+    </div>
+  </div>
+
+  <style lang="scss">
+    @use "../../../styles/utils.scss" as *;
+
+    .heading {
+      display: flex;
+      flex-direction: column;
+      @include s(gap, 20, 20);
+      align-items: center;
+
+      p {
+        text-align: center;
+        max-width: 40ch;
+        @include s(font-size, 16, 16);
+      }
+      @media screen and (min-width: 62.5rem) {
+        flex-direction: row;
+        align-items: flex-end;
+        p {
+          text-align: left;
+          @include s(margin-bottom, -12, 12);
+          max-width: 36ch;
+        }
+      }
+    }
+
+    .icon {
+      @include s(width, 45, 52);
+      @include s(height, 45, 52);
+      background-color: var(--clr-bg-600);
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+
+      img,
+      svg {
+        @include s(width, 20, 24);
+        height: auto;
+      }
+    }
+
+    .bento-container {
+      @include s(margin-top, 70, 70);
+      display: flex;
+      flex-wrap: wrap;
+      @include s(gap, 12, 12);
+      justify-content: center;
+      .card {
+        background-color: var(--clr-bg-700);
+        border-radius: calc(var(--border-radius) + 2px);
+        border: 1px solid rgba(243, 247, 252, 0.03);
+        @include s(padding-inline, 28, 32);
+        @include s(padding-block, 28, 32);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        @include s(font-size, 16, 16);
+        width: 100%;
+        @include s(gap, 40, 40);
+        flex: 1 0 21.25rem; /* This line is new */
+        .wrapper {
+          display: flex;
+          flex-direction: column;
+          @include s(gap, 4, 4);
+        }
+        h3 {
+          font-weight: 700;
+          position: relative;
+          @include s(font-size, 17, 18);
+          line-height: 1.44;
+        }
+        p {
+          position: relative;
+          line-height: 1.44;
+          max-width: 35ch;
+        }
+
+        button,
+        a {
+          text-align: left;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          @include s(font-size, 14, 14);
+          padding-block: 1rem;
+        }
+      }
+
+      .card-f {
+        .wrapper {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          @include s(gap, 12, 12);
+        }
+        p {
+          max-width: 28ch;
+        }
+        .left-wrapper {
+          display: flex;
+          flex-direction: column;
+          @include s(gap, 4, 4);
+        }
+        .right-wrapper {
+          @include s(min-width, 40, 47);
+          @include s(min-height, 40, 47);
+          background-color: var(--clr-bg-600);
+          display: grid;
+          place-items: center;
+          border-radius: 999px;
+
+          img,
+          svg {
+            @include s(width, 16, 20);
+            min-height: auto;
+          }
+        }
+      }
+    }
+
+    .revue-container {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      margin-inline: auto;
+      @include s(gap, 32, 0);
+      @include s(margin-top, 12, 12);
+      background-color: var(--clr-bg-700);
+      border: 1px solid var(--clr-border);
+      @include s(padding-inline, 24, 32);
+      @include s(padding-bottom, 24, 32);
+      @include s(padding-top, 32, 32);
+
+      border-radius: calc(var(--border-radius) + 2px);
+
+      h3 {
+        font-weight: 700;
+        line-height: 1.5;
+        @include s(font-size, 17, 18);
+      }
+      p {
+        line-height: 1.6;
+        @include s(font-size, 16, 16);
+        max-width: 40ch;
+      }
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include s(gap, 20, 16);
+      }
+      @media (min-width: 900px) {
+        @include s(margin-top, 12, 12);
+
+        max-width: unset;
+        flex-direction: row;
+        text-align: left;
+        align-items: center;
+
+        justify-content: space-between;
+        p {
+          max-width: 50ch;
+          line-height: 1.33;
+        }
+        .wrapper {
+          align-items: flex-start;
+          justify-content: center;
+          @include s(gap, 4, 4);
+        }
+      }
+    }
+  </style>
+</section>

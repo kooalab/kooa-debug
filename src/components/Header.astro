@@ -1,0 +1,321 @@
+---
+import Navigation from "./Navigation.astro";
+import logo from "../assets/icons/logo-kooa.svg";
+import { Image } from "astro:assets";
+import Contact from "./Contact.astro";
+import Configurator from "./Configurator.astro";
+---
+
+<header mobile-header data-lenis-prevent>
+  <div class="header-wrapper">
+    <Navigation />
+    <Contact />
+    <Configurator />
+    <div class="hub">
+      <div class="bg"></div>
+      <div class="navigation-buttons">
+        <div class="default-hub">
+          <a href="/" id="logo">
+            <span class="magnetic" data-strength="20">
+              <Image src={logo} alt="Logo de KOOA" loading="eager" /></span
+            >
+          </a>
+          <button id="burger">
+            <span class="magnetic" data-strength="20">Menu</span></button
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="remerciements">
+      Merci ! <span style="color: var(--clr-text-400);"
+        >Nous vous <span class="next"
+          >contacterons prochainement. <span class="little"> 🎉</span></span
+        ></span
+      >
+    </div>
+  </div>
+</header>
+
+<style lang="scss">
+  @use "../styles/utils.scss" as *;
+
+  $border-radius: calc(var(--border-radius) + 4px);
+
+  .transition {
+    transition:
+      scale 500ms cubic-bezier(0.75, 0, 0, 1.15),
+      border-radius 500ms cubic-bezier(0.75, 0, 0, 1);
+  }
+
+  .remerciements {
+    position: absolute;
+    bottom: 0;
+    padding-block: 1rem;
+    padding-inline: 1.5rem;
+    line-height: 1.5;
+    text-align: center;
+    // max-width: 27ch;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // background-color: red;
+    z-index: 30;
+    pointer-events: none;
+    display: none;
+    opacity: 0;
+    white-space: nowrap;
+    transform-origin: center;
+    transform: translateY(-120px);
+    scale: 0;
+    transition:
+      transform 0ms cubic-bezier(0.75, 0, 0, 1.1) 600ms,
+      scale 600ms cubic-bezier(0.75, 0, 0, 1),
+      opacity 600ms cubic-bezier(0.75, 0, 0, 1);
+    span.next {
+      display: block;
+    }
+    span.little {
+      display: inline-block;
+      position: relative;
+      scale: 0.7;
+    }
+  }
+
+  header[mobile-header] {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    max-height: 100vh;
+    max-height: 100svh;
+    min-height: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    padding-bottom: 0.75rem;
+    @include s(padding-bottom, 12, 28);
+    /* align-items: flex-end; */
+    overflow-y: auto;
+    pointer-events: none;
+    z-index: 100;
+    /* existing styles */
+    overflow-y: auto;
+    scrollbar-width: none; /* for Firefox */
+    -ms-overflow-style: none; /* for Internet Explorer and Edge */
+
+    /* For Webkit browsers like Chrome and Safari */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .header-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      width: 100%;
+      height: var(--contentHeight); /* Fixed height */
+      flex-shrink: 0;
+      overflow-y: hidden;
+      overflow-x: hidden;
+    }
+
+    .hub {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: all;
+    }
+    .navigation-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .default-hub {
+      display: flex;
+      gap: 0.75rem;
+      padding: 1rem;
+      height: 4.125rem;
+      width: 10.375rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #logo,
+    #burger {
+      position: relative;
+      z-index: 30;
+      opacity: 1;
+      padding: 8px;
+      transition:
+        transform 500ms cubic-bezier(0.42, 0.23, 0.25, 1.2),
+        opacity 500ms cubic-bezier(0.42, 0.23, 0.25, 1) 250ms;
+
+      padding: unset;
+      span {
+        // background-color: red;
+        display: block;
+        padding: 8px;
+
+        transition: color 0.3s cubic-bezier(0.5, 0, 0.15, 1);
+        @media (hover: hover) {
+          &:hover {
+            color: var(--clr-text-400);
+          }
+        }
+      }
+      img {
+        opacity: 1;
+        transition: opacity 400ms cubic-bezier(0.11, 0.49, 0.43, 1) 250ms;
+      }
+    }
+    #burger {
+      // margin-top: 1px;
+
+      @media screen and (min-width: 81.25rem) {
+        font-size: 1.0625rem;
+      }
+    }
+    .bg {
+      position: absolute;
+      align-self: flex-start;
+      z-index: 20;
+      background-color: var(--clr-text-700);
+      transform-origin: bottom;
+      border-radius: $border-radius;
+      border: 1px solid var(--clr-border);
+      pointer-events: none;
+      width: 10.375rem;
+      height: 4.125rem;
+      // box-shadow:
+      //   inset 0 1px 1px 0 rgba(199, 211, 234, 0.12),
+      //   inset 0 24px 48px 0 rgba(199, 211, 234, 0.05);
+    }
+
+    &.dimensions-set {
+      .bg {
+        position: absolute;
+        inset: unset;
+        bottom: 0;
+        width: calc(100% - 30px);
+        max-width: 25rem;
+        height: var(--height);
+        border-radius: calc(#{$border-radius}/ var(--fx)) /
+          calc(#{$border-radius}/ var(--fy));
+        scale: var(--fx) var(--fy);
+      }
+    }
+  }
+  body.nav-open {
+    header[mobile-header] {
+      .bg {
+        scale: 1;
+        border-radius: $border-radius;
+      }
+      #burger,
+      #logo {
+        transition:
+          transform 500ms cubic-bezier(0.42, 0.23, 0.25, 1) 50ms,
+          opacity 250ms linear;
+        opacity: 0;
+      }
+      #burger {
+        transform: translateX(60px);
+      }
+      #logo {
+        transform: translateX(-60px);
+      }
+    }
+  }
+  body.config-open {
+    header[mobile-header] {
+      .bg {
+        scale: 1;
+        border-radius: $border-radius;
+      }
+      #burger,
+      #logo {
+        transition:
+          transform 500ms cubic-bezier(0.42, 0.23, 0.25, 1) 50ms,
+          opacity 250ms linear;
+        opacity: 0;
+      }
+      #burger {
+        transform: translateX(60px);
+      }
+      #logo {
+        transform: translateX(-60px);
+      }
+    }
+  }
+
+  body.contact-open {
+    header[mobile-header] {
+      .bg {
+        scale: 1;
+        border-radius: $border-radius;
+      }
+      #burger,
+      #logo {
+        opacity: 0;
+        transition:
+          transform 500ms cubic-bezier(0.42, 0.23, 0.25, 1) 50ms,
+          opacity 250ms linear;
+      }
+      #burger {
+        transform: translateX(60px);
+      }
+      #logo {
+        transform: translateX(-60px);
+      }
+    }
+  }
+  body.new-dimensions {
+    header[mobile-header] {
+      .bg {
+        height: var(--heightRemerc);
+        width: var(--widthRemerc);
+        scale: 1;
+        border-radius: $border-radius;
+      }
+    }
+  }
+
+  body.remerciements-open {
+    .remerciements {
+      opacity: 1;
+      transform: translateY(0);
+      scale: 1;
+      transform-origin: top;
+      transition:
+        transform 600ms cubic-bezier(0.75, 0, 0, 1.1),
+        scale 600ms cubic-bezier(0.75, 0, 0, 1.1),
+        opacity 800ms cubic-bezier(0.75, 0, 0, 1) 200ms;
+    }
+    header[mobile-header] {
+      #burger,
+      #logo {
+        opacity: 0;
+      }
+      #burger {
+        transform: translateX(60px);
+      }
+      #logo {
+        transform: translateX(-60px);
+      }
+    }
+  }
+
+  body.back-normal {
+    header[mobile-header] {
+      .bg {
+        width: var(--widthRemerc);
+        height: var(--heightRemerc);
+        border-radius: calc(#{$border-radius}/ var(--fx)) /
+          calc(#{$border-radius}/ var(--fy));
+        scale: var(--fx) var(--fy);
+      }
+    }
+  }
+</style>

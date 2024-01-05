@@ -1,0 +1,212 @@
+---
+import { Image } from "astro:assets";
+import excluStrategique from "../../../assets/creation-site-internet-sur-mesure.svg";
+import tauxConversion from "../../../assets/taux-de-conversion-optimise.svg";
+import securiteRenforcee from "../../../assets/securite-renforcee.svg";
+---
+
+<div class="bento-container">
+  <div id="slider-website" class="slider">
+    <div class="card card-a">
+      <h3>Exclusivité Stratégique</h3><p>
+        Plus qu'un joli design, chaque élément est placé stratégiquement pour
+        optimiser l'expérience utilisateur et maximiser les conversions. Soyez
+        unique dans un océan de sites génériques.
+      </p>
+      <Image
+        src={excluStrategique}
+        alt="creation de site internet sur mesure"
+      />
+    </div>
+    <div class="card card-b">
+      <h3>Taux de Conversion Optimisé</h3><p>
+        Profitez d'un design et d'une performance hors pair. Un site rapide et
+        un SEO solide boostent directement votre taux de conversion.
+      </p>
+      <Image src={tauxConversion} alt="Taux de conversion optimisé" />
+    </div>
+    <div class="card card-c">
+      <h3>Sécurité Renforcée</h3><p>
+        Un site sur mesure pour une meilleure sécurité. Protégez votre
+        entreprise et vos clients grâce à une architecture résistante.
+      </p>
+      <Image src={securiteRenforcee} alt="Taux de conversion optimisé" />
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../../../styles/utils.scss" as *;
+
+  .bento-container {
+    width: 100%;
+    height: fit-content;
+    // @include s(margin-bottom, 120, 120);
+
+    .slider {
+      display: flex;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      overflow-x: auto;
+      height: 25rem;
+      scroll-snap-type: x mandatory;
+      cursor: grab;
+      @include s(gap, 12, 12);
+
+      @media (min-width: 53.125rem) {
+        @include s(font-size, 16, 16);
+        height: unset;
+        cursor: unset;
+        display: grid;
+        overflow-x: visible;
+        scroll-snap-type: none;
+        @include s(max-width, 1064, 1064);
+        margin-inline: auto;
+        grid-template:
+          "a a"
+          "b c";
+
+        grid-template-columns: 1fr 1fr; /* Replace with your desired column widths */
+        grid-template-rows: 20em 18.5em;
+      }
+    }
+    .slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    // Hide scrollbar for IE, Edge and Firefox
+    .slider {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+    .slider.grabbing {
+      cursor: grabbing;
+    }
+
+    .card {
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      width: 80%;
+      max-width: 22.5rem;
+      height: 25rem;
+      background-color: var(--clr-bg-700);
+      border-radius: calc(var(--border-radius) + 1px);
+      border: 1px solid rgba(243, 247, 252, 0.03);
+      scroll-snap-stop: always;
+      overflow: hidden;
+      position: relative;
+      @include s(padding-inline, 22, 34);
+      @include s(padding-block, 28, 34);
+      @include s(gap, 4, 4);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      hyphens: auto;
+      h3 {
+        font-weight: 700;
+        position: relative;
+        @include s(font-size, 17, 20);
+        line-height: 1.44;
+      }
+      p {
+        position: relative;
+        line-height: 1.66;
+        max-width: 30ch;
+      }
+      img,
+      svg {
+        max-width: 140%;
+        height: auto;
+        object-fit: cover;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      &.card-a {
+        img,
+        svg {
+          max-width: 120%;
+          bottom: -3%;
+        }
+      }
+      &.card-b {
+        justify-content: flex-end;
+        img,
+        svg {
+          width: 120%;
+          top: -10%;
+        }
+      }
+      &.card-c {
+        position: relative;
+        img,
+        svg {
+          width: 140%;
+          min-width: 420px;
+          left: 3%;
+          bottom: -2%;
+          transform: unset;
+        }
+      }
+
+      @media (min-width: 53.125rem) {
+        scroll-snap-align: none;
+        flex: none;
+        width: 100%;
+        height: 100%;
+        max-width: unset;
+        img {
+          max-width: 100%;
+        }
+        &.card-a {
+          img {
+            width: 60%;
+            @include s(min-width, 600, 600);
+            right: -2%;
+            left: unset;
+            bottom: 0;
+            transform: unset;
+          }
+          p {
+            max-width: 38ch;
+          }
+          // max-width: 100%;
+          grid-area: a;
+        }
+        &.card-b {
+          justify-content: flex-start;
+          p {
+            max-width: 35ch;
+          }
+          img,
+          svg {
+            height: 100%;
+            top: unset;
+            bottom: 0;
+            right: 0;
+          }
+          grid-area: b;
+        }
+        &.card-c {
+          img,
+          svg {
+            @include s(max-width, 400, 400);
+            transform: translateX(-50%);
+            left: 50%;
+            bottom: -6%;
+          }
+          grid-area: c;
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  // @ts-nocheck
+  // import { initializeSlider } from "../../../js/slider";
+  // document.addEventListener("DOMContentLoaded", function () {
+  //   initializeSlider("slider-website");
+  // });
+</script>

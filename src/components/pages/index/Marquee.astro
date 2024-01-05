@@ -1,0 +1,170 @@
+---
+import { Image } from "astro:assets";
+
+import marquee1D from "../../../assets/marquee1-d.svg";
+import marquee2D from "../../../assets/marquee2-d.svg";
+import marquee3D from "../../../assets/marquee3-d.svg";
+import marquee4D from "../../../assets/marquee4-d.svg";
+import marquee5D from "../../../assets/marquee5-d.svg";
+import marquee6D from "../../../assets/marquee6-d.svg";
+import marquee7D from "../../../assets/marquee7-d.svg";
+import marquee8D from "../../../assets/marquee8-d.svg";
+
+import Icon from "astro-icon";
+---
+
+<div class="marquee">
+  <h3>Technologies utilisées</h3>
+
+  <div class="logos-rolling-wrapper">
+    <div class="logos-rolling">
+      <Icon name="marquee1" alt="" />
+      <Icon name="marquee2" alt="" />
+      <Icon name="marquee3" alt="" />
+      <Icon name="marquee4" alt="" />
+      <Icon name="marquee5" alt="" />
+      <Icon name="marquee6" alt="" />
+      <Icon name="marquee7" alt="" />
+      <Icon name="marquee8" alt="" />
+    </div>
+  </div>
+  <div class="logos-rolling-wrapper dupl">
+    <div class="logos-rolling">
+      <Image src={marquee1D} alt="" />
+      <Image src={marquee2D} alt="" />
+      <Image src={marquee3D} alt="" />
+      <Image src={marquee4D} alt="" />
+      <Image src={marquee5D} alt="" />
+      <Image src={marquee6D} alt="" />
+      <Image src={marquee7D} alt="" />
+      <Image src={marquee8D} alt="" />
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../../../styles/utils.scss" as *;
+
+  .marquee {
+    overflow: hidden;
+    position: relative;
+
+    background: rgb(7, 8, 11);
+    background: linear-gradient(
+      0deg,
+      rgba(7, 8, 11, 0) 0%,
+      rgba(244, 248, 252, 0.10547969187675066) 60%,
+      rgba(244, 248, 252, 1) 60%,
+      rgba(244, 248, 252, 1) 100%
+    );
+    display: flex;
+    @include s(padding-bottom, 100, 100);
+    @include s(padding-top, 37, 50);
+    justify-content: space-between;
+    @include s(gap, 50, 75);
+    flex-direction: column;
+    align-items: center;
+
+    h3 {
+      color: var(--clr-bg-700);
+      text-transform: uppercase;
+      @include s(font-size, 12, 14);
+      letter-spacing: 0.08em;
+    }
+    &.animate {
+      .logos-rolling-wrapper {
+        .logos-rolling {
+          @media (max-width: 767px) {
+            animation: marquee 15s linear infinite;
+            @keyframes marquee {
+              to {
+                transform: translateX(-100%);
+              }
+            }
+          }
+        }
+      }
+    }
+    .logos-rolling-wrapper {
+      white-space: nowrap;
+      width: 100%;
+      @include s(margin-bottom, 80, 120);
+
+      &.dupl {
+        transform-origin: center;
+        opacity: 0.4;
+        // mix-blend-mode: color-burn;
+        // scale: 1 2.2;
+        // opacity: 0.2;
+        @media screen and (max-width: 600px) {
+          opacity: 0.8;
+        }
+        .logos-rolling {
+          img {
+            scale: 2.5;
+
+            &:nth-child(3) {
+              opacity: 0.8;
+            }
+            &:nth-child(3) {
+              opacity: 0.3;
+            }
+            &:nth-child(3) {
+              opacity: 0.8;
+            }
+            &:nth-child(5) {
+              opacity: 0.8;
+            }
+            &:nth-child(6) {
+            }
+            &:nth-child(6) {
+              opacity: 0.7;
+            }
+          }
+        }
+      }
+      .logos-rolling {
+        display: inline-block;
+        /* CSS for mobile devices */
+
+        img,
+        svg {
+          transform: translateZ(0.1px);
+          display: inline-block;
+          vertical-align: middle;
+          display: unset;
+          @include s(margin-inline, 50, 120);
+          @media (max-width: 767px) {
+            margin-inline: 50px;
+          }
+          height: auto;
+          fill: var(--color-neutral-600);
+          &:nth-child(1) {
+            @include s(width, 48, 53);
+          }
+          &:nth-child(2) {
+            @include s(width, 120, 145);
+          }
+          &:nth-child(3) {
+            @include s(width, 50, 57);
+          }
+          &:nth-child(4) {
+            @include s(width, 43, 50);
+          }
+          &:nth-child(5) {
+            @include s(width, 49, 56);
+          }
+          &:nth-child(6) {
+            @include s(width, 26, 33);
+          }
+          &:nth-child(7) {
+            @include s(width, 110, 152);
+          }
+          &:nth-child(8) {
+            @include s(width, 43, 50);
+          }
+        }
+      }
+    }
+  }
+</style>

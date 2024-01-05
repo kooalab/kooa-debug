@@ -1,0 +1,38 @@
+---
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import Marquee from "../components/pages/site-internet/Marquee.astro";
+import Essentiel from "../components/pages/support-et-maintenance-web/Essentiel.astro";
+import Excellence from "../components/pages/support-et-maintenance-web/Excellence.astro";
+import FAQ from "../components/pages/support-et-maintenance-web/FAQ.astro";
+import HowItWorks from "../components/pages/support-et-maintenance-web/HowItWorks.astro";
+import Paragraph from "../components/pages/support-et-maintenance-web/Paragraph.astro";
+
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Support et maintenance web" description="Description of my page">
+  <Hero
+    type="hero-support"
+    description="Des sites web performants pour les entreprises qui veulent aller plus loin. Transformez vos visiteurs en clients grâce à un design qui convertit."
+    title="Support et maintenance web inclus"
+    accent="pendant 24 mois"
+    class="support-section"
+  />
+
+  <Paragraph
+    phrase1=" L'excellence sans compromis."
+    phrase2="KOOA propose une expérience web all-inclusive, fusionnant design, "
+    phrase3="support et performance au cœur d'un seul package."
+    className="side-side"
+    class="support"
+  />
+  <Excellence />
+  <Essentiel />
+  <Marquee />
+  <HowItWorks />
+  <FAQ />
+  <Footer />
+</Layout>
+
+<style lang="scss"></style>

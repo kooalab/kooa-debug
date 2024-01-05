@@ -1,0 +1,146 @@
+---
+import { Image } from "astro:assets";
+import time from "../assets/icons/read-time.svg";
+
+const { date, title, descr, tag1, tag2, speed } = Astro.props;
+---
+
+<article>
+  <a href="">
+    <div class="content-wrapper">
+      <div class="date">{date}</div>
+      <h3 class="title">
+        {title}
+      </h3>
+      <p class="description">
+        {descr}
+      </p>
+      <div class="bottom-wrapper">
+        <div class="tag-wrapper">
+          <span class="tag">{tag1}</span>
+          <span class="tag">{tag2}</span>
+        </div>
+
+        <div class="time">
+          <Image src={time} alt="icon de temps" /><span>
+            {speed} min de lecture</span
+          >
+        </div>
+      </div>
+    </div>
+    <div class="img-wrapper"></div>
+  </a>
+</article>
+
+<style lang="scss">
+  @use "../styles/utils.scss" as *;
+
+  article a {
+    display: flex;
+    flex-direction: column-reverse;
+    @include s(font-size, 16, 16);
+    @include s(gap, 20, 20);
+    cursor: pointer;
+    .content-wrapper {
+      display: grid;
+      grid-template:
+        "a a"
+        "b c";
+      @include s(gap, 12, 12);
+      grid-template-columns: 1fr 1fr; /* Replace with your desired column widths */
+    }
+
+    .date {
+      color: var(--clr-text-400);
+      grid-area: c;
+      text-align: right;
+    }
+    .tag-wrapper {
+      display: none;
+
+      .tag {
+        background-color: var(--clr-bg-700);
+        border-radius: calc(var(--border-radius) - 1px);
+        @include s(padding-top, 8, 8);
+        @include s(padding-bottom, 8, 8);
+        @include s(padding-inline, 12, 12);
+        border: 1px solid var(--clr-border);
+      }
+    }
+    .description {
+      display: none;
+    }
+    h3 {
+      grid-area: a;
+      font-weight: 600;
+      @include s(font-size, 18, 25);
+      max-width: 40ch;
+      line-height: 1.25;
+    }
+    .time {
+      grid-area: b;
+      display: flex;
+      color: var(--clr-text-400);
+      @include s(gap, 8, 8);
+      align-items: center;
+    }
+    .img-wrapper {
+      background-color: var(--clr-bg-700);
+      width: 100%;
+      border-radius: calc(var(--border-radius) + 2px);
+      border: 1px solid var(--clr-border);
+
+      &::before {
+        content: "";
+        display: block;
+        padding-top: 66.67%; /* Aspect ratio 3:2 (100% / (3/2) = 66.67%) */
+      }
+    }
+    @media screen and (min-width: 53.125rem) {
+      flex-direction: row;
+      align-items: center;
+      @include s(gap, 32, 32);
+      .img-wrapper {
+        min-width: 40%;
+        width: 40%;
+      }
+
+      .content-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        .description,
+        .tag-wrapper {
+          display: block;
+        }
+        .tag-wrapper {
+          display: flex;
+          @include s(gap, 8, 8);
+        }
+        h3 {
+          @include s(margin-bottom, 20, 20);
+        }
+        .date {
+          text-align: left;
+        }
+        .time {
+        }
+        .description {
+          display: -webkit-box;
+          -webkit-line-clamp: 2; /* Number of lines you want to display */
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: normal;
+          line-height: 1.4em; /* Adjust the line height as needed */
+          max-height: 2.8em; /* Twice the line-height, since you want two lines */
+          @include s(margin-bottom, 20, 20);
+        }
+        .bottom-wrapper {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+</style>

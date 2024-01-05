@@ -1,0 +1,169 @@
+---
+import { Image } from "astro:assets";
+import star from "../assets/icons/star-button.svg";
+
+const {
+  text,
+  icon,
+  secondary,
+  classes = "",
+  link,
+  effect,
+  type,
+  ...rest
+} = Astro.props;
+---
+
+{
+  link ? (
+    <a
+      data-strength="30"
+      data-strength-text="20"
+      href={link}
+      class={`${secondary ? "secondary" : "primary"}  ${
+        effect ? "effect" : ""
+      }  ${classes} `}
+    >
+      <span class="btn-text">
+        <span class="btn-text-wrapper">
+          <span class="btn-text-inner">{text}</span>
+          <span class="btn-text-inner duplicate">{text}</span>
+        </span>
+      </span>
+      {icon && <Image src={star} alt="icon d'une étoile" aria-hidden="true" />}
+    </a>
+  ) : (
+    <button
+      data-strength="30"
+      data-strength-text="20"
+      {...rest}
+      type={type}
+      class={`${secondary ? "secondary" : "primary"}  ${
+        effect ? "effect" : ""
+      }  ${classes} `}
+    >
+      <span class="btn-text">
+        <span class="btn-text-wrapper">
+          <span class="btn-text-inner">{text}</span>
+          <span class="btn-text-inner duplicate">{text}</span>
+        </span>
+      </span>
+
+      {icon && <Image src={star} alt="icon d'une étoile" aria-hidden="true" />}
+    </button>
+  )
+}
+
+<style lang="scss">
+  @use "../styles/utils.scss" as *;
+
+  button,
+  a {
+    @include s(padding-block, 16, 16);
+    @include s(padding-inline, 24, 24);
+
+    border-radius: var(--border-radius);
+    @include s(font-size, 16, 16);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include s(gap, 8, 8);
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    &[disabled] {
+      cursor: not-allowed;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+    @media (hover: hover) {
+      &:hover {
+        span.btn-text-wrapper {
+          transform: translateY(-200%);
+          transition: transform 0.6s cubic-bezier(0.5, 0, 0.15, 1);
+        }
+        span.btn-text-inner {
+          filter: blur(10px);
+          opacity: 0;
+          transition:
+            filter 0.6s cubic-bezier(0.5, 0, 0.15, 1),
+            opacity 0.6s cubic-bezier(0.5, 0, 0.15, 1);
+          &.duplicate {
+            filter: blur(0);
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    span.btn-text-wrapper {
+      position: relative;
+      display: block;
+    }
+    span.btn-text-inner {
+      font-weight: 500;
+      position: relative;
+
+      &.duplicate {
+        position: absolute;
+        top: 200%;
+        left: 0;
+        filter: blur(10px);
+        opacity: 0;
+      }
+    }
+  }
+
+  button.primary,
+  a.primary {
+    color: var(--clr-bg-700);
+    background-color: var(--clr-text-100);
+    position: relative;
+    text-align: center;
+    img {
+      @include s(width, 15, 15);
+      height: auto;
+    }
+    &.effect {
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        opacity: 0.6;
+        filter: blur(16px);
+        border-radius: var(--border-radius);
+        mix-blend-mode: difference;
+        transition:
+          filter 0.5s ease-in-out,
+          opacity 0.5s ease-in-out;
+      }
+      &::before {
+        left: 33%;
+        background-color: #d5a2ff;
+      }
+      &::after {
+        right: 33%;
+        background-color: #95cfff;
+      }
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        &::before,
+        &::after {
+          opacity: 1;
+          filter: blur(20px);
+        }
+      }
+    }
+  }
+
+  button.secondary,
+  a.secondary {
+    border: 1px solid rgba(242, 247, 252, 0.03);
+    background-color: var(--clr-text-700);
+  }
+</style>

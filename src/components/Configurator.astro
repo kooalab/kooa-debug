@@ -1,0 +1,809 @@
+---
+import mail from "../assets/icons/mail-icon.svg";
+import chat from "../icons/chat-icon.svg";
+import { Image } from "astro:assets";
+import Icon from "astro-icon";
+import Button from "./Button.astro";
+import img from "../icons/1page-icon.svg";
+import Addon from "./Addon.astro";
+---
+
+<div class="config">
+  <div class="breadcrumb">
+    <span class="done steps">1. Pages</span>
+    <span class="steps"><Icon name="star" /> 2. Enhancements</span>
+    <span class="steps"> <Icon name="star" /> 3. Functionalities</span>
+    <span class="your-config done" style="display: none;"
+      >Your configuration</span
+    >
+    <span class="get-in-touch done" style="display: none;">Get in touch</span>
+  </div>
+  <form id="configuratorForm" name="config" method="POST" data-netlify="true">
+    <div class="time-to-pay">
+      <button type="button" id="fullPriceButton" class="active"
+        >Prix complet</button
+      >
+      <button type="button" id="monthlyPriceButton">Sur 12 mois</button>
+    </div>
+
+    <div id="summary-container" data-lenis-prevent>
+      <!-- Dynamic content -->
+    </div>
+    <!-- Step 1: Page Add-ons -->
+    <fieldset id="step1" class="step">
+      <legend>Choose Your Page Limit</legend>
+      <div class="addon-container" data-lenis-prevent>
+        <Addon type="radio" title="1 Page" price="2000" iconName="1page-icon" />
+        <Addon
+          type="radio"
+          title="Jusqu'à 5 pages"
+          price="2600"
+          iconName="5page-icon"
+        />
+        <Addon
+          type="radio"
+          title="Jusqu'à 10 pages"
+          price="3200"
+          iconName="10page-icon"
+        />
+        <Addon
+          type="radio"
+          title="Jusqu'à 15 pages"
+          price="3600"
+          iconName="1page-icon"
+        />
+      </div>
+
+      <div class="button-container">
+        <Button
+          id="goToStep2Button"
+          type="button"
+          data-goto="2"
+          text="Suivant"
+          classes="magnetic"
+        />
+      </div>
+    </fieldset>
+
+    <!-- Step 2: Functionalities -->
+    <fieldset id="step2" class="step" style="display: none;">
+      <legend>Select Your Functionalities</legend>
+      <div class="addon-container" data-lenis-prevent>
+        <Addon title="1 Page" price="2000" iconName="1page-icon" />
+        <Addon title="Jusqu'à 5 pages" price="2600" iconName="5page-icon" />
+        <Addon title="Jusqu'à 10 pages" price="3200" iconName="10page-icon" />
+        <Addon title="Jusqu'à 15 pages" price="3600" iconName="1page-icon" />
+      </div>
+      <div class="button-container">
+        <Button
+          type="button"
+          data-goto="1"
+          secondary
+          text="Retour"
+          classes="magnetic"
+        />
+        <Button type="button" data-goto="3" text="Suivant" classes="magnetic" />
+      </div>
+    </fieldset>
+    <!-- Step 3: Extras -->
+    <fieldset id="step3" class="step" style="display: none;">
+      <legend>Select Your Extras</legend>
+      <div class="addon-container" data-lenis-prevent>
+        <Addon title="1 Page" price="2000" iconName="1page-icon" />
+        <Addon title="Jusqu'à 5 pages" price="2600" iconName="5page-icon" />
+        <Addon title="Jusqu'à 10 pages" price="3200" iconName="10page-icon" />
+        <Addon title="Jusqu'à 15 pages" price="3600" iconName="1page-icon" />
+      </div>
+      <div class="button-container">
+        <Button
+          type="button"
+          data-goto="2"
+          secondary
+          text="Retour"
+          classes="magnetic"
+        />
+        <Button type="button" data-goto="4" text="Suivant" classes="magnetic" />
+      </div>
+    </fieldset>
+    <!-- Step 4: Dialog -->
+
+    <fieldset id="step4" class="step" style="display: none;">
+      <legend>Want to discuss your configuration?</legend>
+      <div class="addon-container">
+        <p>
+          Click below to fill out a quick form. We'll then contact you to talk
+          details and answer any questions. No commitment, no obligation.
+        </p>
+      </div>
+      <div class="button-container">
+        <Button
+          type="button"
+          data-goto="3"
+          secondary
+          text="Retour"
+          classes="magnetic"
+        />
+        <Button
+          type="button"
+          data-goto="5"
+          text="Formulaire"
+          classes="magnetic"
+        />
+      </div>
+    </fieldset>
+    <!-- Step 5: Form and submit-->
+    <fieldset id="step5" class="step" style="display: none;">
+      <!-- Confirmation of selections and input fields for user information -->
+      <div class="addon-container">
+        <!-- <div class="input-container"> -->
+        <div class="wrapper" data-name="Nom complet">
+          <!-- <label for="nomComplet">Nom complet *</label> -->
+          <input type="text" id="nconfigcomplet" name="nomComplet" required />
+        </div>
+        <div class="wrapper" data-name="E-mail">
+          <!-- <label for="email">E-mail *</label> -->
+          <input type="email" name="email" required />
+        </div>
+        <!-- </div> -->
+        <div class="wrapper textarea" style="--delay : 3" data-name="Message">
+          <!-- <label for="message">Message *</label> -->
+          <textarea required name="message" id="msgConfig"></textarea>
+        </div>
+      </div>
+      <div class="button-container">
+        <Button
+          type="button"
+          data-goto="4"
+          secondary
+          text="Retour"
+          classes="magnetic"
+        />
+        <Button type="submit" text="Envoyer" classes="magnetic" />
+      </div>
+    </fieldset>
+
+    <!-- Price Display -->
+  </form>
+  <div class="nav-hub">
+    <div id="montant">
+      <span>0 CHF</span>
+    </div>
+    <button id="fermerConfig">
+      <span class="magnetic" data-strength="20">Fermer</span>
+    </button>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../styles/utils.scss" as *;
+
+  body {
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      span {
+        font-size: 0.8125em;
+        display: flex;
+        gap: 10px;
+        white-space: nowrap;
+        color: var(--clr-text-400);
+        transition: color 500ms cubic-bezier(0.5, 0, 0.15, 1);
+        svg {
+          fill: var(--clr-text-400);
+          transition: fill 500ms cubic-bezier(0.5, 0, 0.15, 1);
+        }
+        &.done {
+          color: var(--clr-text-100);
+          svg {
+            fill: var(--clr-text-100);
+          }
+        }
+      }
+      svg {
+        width: 9px;
+      }
+      @media screen and (max-width: 380px) {
+        gap: 2vw;
+        span {
+          font-size: 3.5vw;
+          gap: 2vw;
+        }
+      }
+    }
+
+    form {
+      margin-top: 32px;
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+      padding-inline: 20px;
+      position: relative;
+      // .input-container {
+      //   display: flex;
+      //   gap: 8px;
+      //   max-width: 100%;
+      //   & > .wrapper {
+      //     flex: 1;
+      //   }
+      // }
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        position: relative;
+        &.focused::after {
+          transform: translateY(-7px) scale(0.8);
+          color: #676970;
+
+          /* Adjust the translateY and scale values as needed */
+        }
+        &::after {
+          content: attr(data-name);
+          position: absolute;
+          top: 1.125rem;
+          left: 1rem;
+          color: #212329;
+          transition: transform 200ms ease-in;
+          transform-origin: top left;
+          pointer-events: none;
+        }
+
+        input,
+        textarea {
+          background-color: var(--clr-bg-900);
+          padding: 1.5rem 0.75rem 0.5rem 1rem;
+          border-radius: var(--border-radius);
+          color: var(--clr-text-100);
+          position: relative;
+          border: 1px solid transparent;
+          transition: border 300ms ease-in;
+          width: 100%;
+          &:focus {
+            outline: none !important;
+            border: 1px solid var(--clr-text-100);
+            // box-shadow: 0 0 0 1px var(--clr-text-100);
+          }
+        }
+        textarea {
+          height: 6.25rem;
+          resize: none;
+          line-height: 1.3;
+        }
+
+        &.textarea {
+          flex-grow: 1;
+        }
+      }
+      #summary-container {
+        position: absolute;
+        // background-color: red;
+        margin-bottom: 16px;
+        display: none;
+        top: -2%;
+        overflow: auto;
+        max-width: calc(100% - 40px);
+        width: calc(100% - 40px);
+        gap: 10px;
+        padding-right: 20px;
+        scrollbar-width: thin;
+        scrollbar-color: var(--clr-bg-900) var(--clr-bg-700);
+        mask: linear-gradient(
+          -90deg,
+          rgba(22, 23, 27, 0) 0%,
+          rgba(22, 23, 27, 1) 6%
+        );
+        -webkit-mask: linear-gradient(
+          -90deg,
+          rgba(22, 23, 27, 0) 0%,
+          rgba(22, 23, 27, 1) 6%
+        );
+
+        &:has(> .little-addon:only-child) {
+          padding-right: 0px;
+          mask: unset;
+          -webkit-mask: unset;
+        }
+        .little-addon {
+          display: flex;
+
+          background-color: var(--clr-bg-900);
+          align-items: center;
+          width: fit-content;
+          padding-inline: 16px;
+          padding-right: 20px;
+          gap: 4px;
+          padding-block: 8px;
+          border-radius: var(--border-radius);
+
+          &:only-child {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+          }
+          img {
+            width: 30px;
+          }
+          span {
+            font-size: 0.8125em;
+            white-space: nowrap;
+          }
+        }
+        /* For Chrome, Safari, and Opera */
+        &::-webkit-scrollbar {
+          height: 20px;
+        }
+
+        &::-webkit-scrollbar-track {
+          // background: var(--clr-bg-700);
+          // border-radius: 9999px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: var(--clr-bg-900);
+          border-radius: 9999px;
+          border: 6px solid var(--clr-text-700);
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background: var(--clr-bg-900);
+        }
+      }
+      .time-to-pay {
+        position: absolute;
+        bottom: 18%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        color: var(--clr-text-400);
+        font-size: 0.8125em;
+
+        button {
+          transition: color 500ms cubic-bezier(0.5, 0, 0.15, 1);
+          @media (hover: hover) {
+            &:hover {
+              color: var(--clr-text-100);
+            }
+          }
+        }
+        .active {
+          color: var(--clr-text-100);
+        }
+      }
+      fieldset {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        justify-content: space-between;
+        min-width: 0;
+        &#step4,
+        &#step5 {
+          legend {
+            margin-bottom: 24px;
+            padding-top: 80px;
+          }
+
+          .addon-container {
+            mask: unset;
+            -webkit-mask: unset;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            &::before {
+              content: "";
+              pointer-events: none;
+              position: absolute;
+              height: 50px;
+              width: 100%;
+              background-color: var(--clr-text-700);
+              mask: linear-gradient(
+                -90deg,
+                rgba(22, 23, 27, 1) 0%,
+                rgba(22, 23, 27, 0) 6%
+              );
+              -webkit-mask: linear-gradient(
+                -90deg,
+                rgba(22, 23, 27, 1) 0%,
+                rgba(22, 23, 27, 0) 6%
+              );
+            }
+            p {
+              text-align: center;
+              width: 85%;
+              margin-inline: auto;
+            }
+          }
+        }
+
+        &#step5 {
+          padding-top: 74px;
+        }
+        .button-container {
+          display: flex;
+          width: 100%;
+          gap: 10px;
+          padding-inline: 4px;
+          button {
+            width: 100%;
+            &.secondary {
+              background-color: var(--clr-bg-900);
+            }
+          }
+        }
+        legend {
+          font-size: 1.3em;
+          font-weight: 600;
+          text-align: center;
+          margin-bottom: 32px;
+        }
+      }
+
+      .addon-container {
+        width: 100%;
+        overflow-y: auto;
+        max-height: 100%;
+        max-height: 232px;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 16px;
+        padding-top: 4px;
+        padding-inline: 4px;
+        gap: 6px;
+        position: relative;
+        scrollbar-width: thin;
+        scrollbar-color: var(--clr-bg-900) var(--clr-bg-700);
+        mask: linear-gradient(
+          0deg,
+          rgba(22, 23, 27, 0) 0%,
+          rgba(22, 23, 27, 1) 8%
+        );
+        -webkit-mask: linear-gradient(
+          0deg,
+          rgba(22, 23, 27, 0) 0%,
+          rgba(22, 23, 27, 1) 8%
+        );
+
+        /* For Chrome, Safari, and Opera */
+        &::-webkit-scrollbar {
+          width: 14px;
+        }
+
+        &::-webkit-scrollbar-track {
+          // background: var(--clr-bg-700);
+          // border-radius: 9999px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: var(--clr-bg-900);
+          border-radius: 9999px;
+          border: 3px solid var(--clr-text-700);
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background: var(--clr-bg-900);
+        }
+      }
+    }
+    //--------------------------------------------
+
+    //--------------------------------------------
+    .config {
+      pointer-events: all;
+      position: absolute;
+      width: calc(100% - 1.875rem);
+      height: 570px;
+      max-width: 25rem;
+      z-index: 30;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 34px;
+      // overflow-x: hidden;
+      display: none;
+      scale: 0;
+      transform: translateY(240px) scale(0.5, 0.5);
+      opacity: 0;
+      transform-origin: bottom;
+      transition:
+        transform 500ms cubic-bezier(0.75, 0, 0, 1),
+        scale 500ms cubic-bezier(0.75, 0, 0, 1),
+        opacity 300ms cubic-bezier(0.75, 0, 0, 1.1);
+
+      @media screen and (min-width: 81.25rem) {
+        font-size: 1.0625rem;
+      }
+
+      .nav-hub {
+        position: relative;
+        min-height: 4.125rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 30;
+        border-top: 1px solid var(--clr-border);
+        margin-top: 20px;
+        #fermerConfig,
+        #montant {
+          padding: 0.5rem;
+          position: relative;
+          transition:
+            transform 400ms cubic-bezier(0.42, 0.23, 0.25, 1.3),
+            opacity 400ms cubic-bezier(0.42, 0.23, 0.25, 1.3);
+          opacity: 0;
+          pointer-events: none;
+          padding: unset;
+          span {
+            // background-color: red;
+            display: block;
+            padding: 8px;
+
+            transition: color 0.3s cubic-bezier(0.5, 0, 0.15, 1);
+            @media (hover: hover) {
+              &:hover {
+                color: var(--clr-text-400);
+              }
+            }
+          }
+        }
+        #fermerConfig {
+          right: calc(1.75rem - 0.5rem);
+          transform: translateX(-40px);
+        }
+        #montant {
+          left: calc(1.75rem - 0.5rem);
+          transform: translateX(40px);
+          span {
+            font-size: 1.1em;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    &.config-open {
+      .config {
+        scale: 1;
+        opacity: 1;
+        transform: translate(0) scale(1, 1);
+        transition:
+          transform 500ms cubic-bezier(0.75, 0, 0, 1.1) 0ms,
+          // scale 620ms cubic-bezier(0.75, 0, 0, 1.1) 0ms,
+          opacity 500ms cubic-bezier(0.75, 0, 0, 1) 0ms;
+
+        .nav-hub {
+          #fermerConfig,
+          #montant {
+            transform: translateX(0);
+            opacity: 1;
+            pointer-events: unset;
+            transition:
+              transform 500ms cubic-bezier(0.42, 0.23, 0.25, 1.3) 150ms,
+              opacity 700ms cubic-bezier(0.42, 0.23, 0.25, 1.3) 300ms;
+          }
+
+          #montant {
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  // @ts-nocheck
+  document.addEventListener("DOMContentLoaded", function () {
+    let isFullPrice = true;
+    let selectedAddons = [];
+    function updatePrice(e) {
+      let notButton = e?.target.getAttribute("type") != "button";
+      let totalPrice = 0;
+      selectedAddons = []; // Reset the selected add-ons list
+
+      const selectedEnhancements = Array.from(
+        document.querySelectorAll(".addon input:checked"),
+      );
+
+      selectedEnhancements.forEach((enhancement) => {
+        const price = parseInt(enhancement.getAttribute("data-price"), 10);
+        totalPrice += price;
+
+        // Update the selected add-ons list
+        notButton &&
+          selectedAddons.push({
+            value: enhancement.value,
+            icon: enhancement.getAttribute("data-icon"),
+            price: price, // Optionally store the price if needed
+          });
+      });
+
+      if (!isFullPrice) {
+        totalPrice /= 12;
+      }
+
+      const formattedPrice = new Intl.NumberFormat("de-CH", {
+        style: "currency",
+        currency: "CHF",
+        minimumFractionDigits: 0,
+      }).format(totalPrice);
+
+      const priceText = isFullPrice ? formattedPrice : `${formattedPrice}/mois`;
+      document.getElementById("montant").querySelector("span").textContent =
+        priceText;
+      notButton && displaySelectedAddons();
+    }
+
+    // Set event listeners for the pricing buttons
+    document
+      .getElementById("fullPriceButton")
+      .addEventListener("click", function (e) {
+        isFullPrice = true;
+        updatePrice(e);
+        this.classList.add("active");
+        document
+          .getElementById("monthlyPriceButton")
+          .classList.remove("active");
+      });
+
+    document
+      .getElementById("monthlyPriceButton")
+      .addEventListener("click", function (e) {
+        isFullPrice = false;
+        updatePrice(e);
+        this.classList.add("active");
+        document.getElementById("fullPriceButton").classList.remove("active");
+      });
+
+    // Attach the updatePrice function to the change event of your inputs
+    document
+      .querySelectorAll(
+        '.addon input[type="checkbox"], .addon input[type="radio"]',
+      )
+      .forEach((radio) => {
+        radio.addEventListener("change", (e) => {
+          updatePrice(e);
+        });
+      });
+
+    // Initial call to set the default state
+    updatePrice();
+    document.querySelectorAll(".config button[data-goTo]").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        const stepNumber = event.currentTarget.dataset.goto;
+        goToStep(stepNumber);
+        updateBreadcrumb(stepNumber);
+      });
+    });
+    function updateBreadcrumb(currentStep) {
+      const breadcrumbSpans = document.querySelectorAll(".breadcrumb .steps");
+
+      // Update the class 'done' and clickability for each breadcrumb item
+      breadcrumbSpans.forEach((span, index) => {
+        if (index < currentStep) {
+          span.classList.add("done");
+          span.style.cursor = "pointer";
+          span.onclick = () => goToStepAndBreadcrumb(index + 1);
+        } else {
+          span.classList.remove("done");
+          span.style.cursor = "default";
+          span.onclick = null;
+        }
+      });
+
+      // Handle special cases for steps 4 and 5
+      handleSpecialBreadcrumbCases(currentStep, breadcrumbSpans);
+    }
+
+    function goToStepAndBreadcrumb(stepNumber) {
+      goToStep(stepNumber);
+      updateBreadcrumb(stepNumber);
+    }
+
+    function handleSpecialBreadcrumbCases(currentStep, breadcrumbSpans) {
+      const yourConfigSpan = document.querySelector(".breadcrumb .your-config");
+      const getInTouchSpan = document.querySelector(
+        ".breadcrumb .get-in-touch",
+      );
+
+      // Set the display of each breadcrumb section based on the current step
+      breadcrumbSpans.forEach(
+        (span) =>
+          (span.style.display =
+            currentStep >= 1 && currentStep <= 3 ? "flex" : "none"),
+      );
+      yourConfigSpan.style.display = currentStep == 4 ? "block" : "none";
+      getInTouchSpan.style.display = currentStep == 5 ? "block" : "none";
+
+      if (currentStep == 5 || currentStep == 4) {
+        document.getElementById("summary-container").style.display = "flex";
+      } else {
+        document.getElementById("summary-container").style.display = "none";
+      }
+    }
+    function goToStep(stepNumber) {
+      // Hide all steps
+
+      document.querySelectorAll(".step").forEach((step) => {
+        step.style.display = "none";
+      });
+
+      document.getElementById("step" + stepNumber).style.display = "flex";
+
+      // if (stepNumber != 5 && stepNumber != 4) {
+
+      //   displaySelectedAddons();
+      // }
+    }
+
+    // Initialize with the first step
+    goToStep(1);
+
+    // This function updates the disabled state of the "Next" button based on the radio selection
+    function updateNextButtonState() {
+      const anyRadioButtonChecked = Array.from(
+        document.querySelectorAll('input[name="pageOption"]'),
+      ).some((radio) => radio.checked);
+      const nextButton = document.getElementById("goToStep2Button");
+      if (anyRadioButtonChecked) {
+        nextButton.disabled = false;
+        nextButton.classList.add("magnetic");
+      } else {
+        nextButton.disabled = true;
+        nextButton.classList.remove("magnetic");
+      }
+    }
+
+    // Set up the event listener for the radio buttons
+    document.querySelectorAll('input[name="pageOption"]').forEach((radio) => {
+      radio.addEventListener("change", updateNextButtonState);
+    });
+
+    // Call this once to set the correct initial state of the "Next" button
+    updateNextButtonState();
+
+    function displaySelectedAddons() {
+      const addonRecapContainer = document.getElementById("summary-container");
+      const cid = addonRecapContainer
+        .getAttributeNames()
+        .find((name) => name.startsWith("data-astro-cid"));
+
+      // Clear previous recap list
+      addonRecapContainer.innerHTML = "";
+
+      // Create HTML for each selected add-on
+      selectedAddons.forEach((addon) => {
+        const addonElement = document.createElement("div");
+        addonElement.className = "little-addon";
+        addonElement.setAttribute(cid, "");
+        const imageElement = document.createElement("img");
+        imageElement.src = `/config-icons/${addon.icon}.svg`; // Update the path as needed
+        imageElement.alt = addon.value;
+        imageElement.setAttribute(cid, "");
+        const titleElement = document.createElement("span");
+        titleElement.textContent = addon.value;
+        titleElement.setAttribute(cid, "");
+
+        addonElement.appendChild(imageElement);
+        addonElement.appendChild(titleElement);
+
+        addonRecapContainer.appendChild(addonElement);
+      });
+    }
+
+    document.addEventListener("formSubmitted", (event) => {
+      if (event.detail.formName === "config") {
+        setTimeout(() => {
+          goToStepAndBreadcrumb(1);
+        }, 1000);
+      }
+    });
+  });
+</script>

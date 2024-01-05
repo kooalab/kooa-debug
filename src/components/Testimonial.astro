@@ -1,0 +1,123 @@
+---
+import { Image } from "astro:assets";
+import albert from "../assets/profil-photo.jpg";
+import linkedIn from "../assets/icons/linkedIn-icon.svg";
+import starsSvg from "../assets/icons/stars.svg";
+---
+
+<section>
+  <div class="container">
+    <div class="stars">
+      <!-- <Image src={stars} alt="" /> -->
+      <Image src={starsSvg} alt="" />
+    </div>
+    <p>
+      “Si vous cherchez à construire une présence en ligne, je vous recommande
+      vivement KOOA. Vous pouvez leur faire confiance pour obtenir des résultats
+      exceptionnels.”
+    </p>
+    <div class="author-wrapper">
+      <div class="pic-wrapper">
+        <Image src={albert} alt="photo d'une personne" />
+      </div>
+      <div class="text-wrapper">
+        <div class="upper">
+          <span>Jacqueline Lupin</span><a
+            href="https://google.com"
+            target="_blank nofollow"
+            class="social-wrapper"
+          >
+            <Image src={linkedIn} alt="icon de linkedIn" />
+          </a>
+        </div>
+        <div class="lower">Directrice, AMBA Foundations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../styles/utils.scss" as *;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .stars {
+    img {
+      @include s(height, 45, 50);
+      width: auto;
+      @include s(margin-bottom, 8, 12);
+    }
+  }
+  p {
+    font-weight: 600;
+    @include s(font-size, 20, 26);
+    text-align: center;
+    color: var(--clr-text-100);
+    max-width: 35ch;
+    @include s(margin-bottom, 32, 32);
+    line-height: 1.5;
+    display: block;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      background-image: url("../assets/icons/testimonial-decoration.svg");
+      background-repeat: no-repeat;
+      background-size: contain; // Ensure the whole image fits
+      top: -0.5em;
+      left: -0.2em;
+      width: 3em;
+      height: 3em;
+      z-index: -1;
+    }
+  }
+  .author-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include s(gap, 12, 12);
+    @include s(font-size, 15, 16);
+  }
+  .pic-wrapper {
+    img {
+      border-radius: 9999px;
+      @include s(height, 38, 42);
+      @include s(width, 38, 42);
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+  .text-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    @include s(gap, 4, 4);
+  }
+  .upper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include s(gap, 8, 8);
+    span {
+      font-weight: 700;
+    }
+    .social-wrapper {
+      background-color: var(--clr-bg-700);
+      border: var(--clr-border);
+      @include s(padding, 6, 6);
+      border-radius: 0.1875rem;
+      cursor: pointer;
+      img {
+        @include s(height, 10, 10);
+        width: auto;
+      }
+    }
+  }
+  .lower {
+    color: var(--clr-text-400);
+  }
+</style>

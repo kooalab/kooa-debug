@@ -1,0 +1,104 @@
+---
+import Icon from "astro-icon";
+---
+
+<div class="marquee-wrapper">
+  <div class="o-e" data-action="marquee"></div>
+  <div class="marquee">
+    <div class="logos-rolling-wrapper">
+      <div class="logos-rolling">
+        <Icon name="css-white" alt="" />
+        <Icon name="js-white" alt="" />
+        <Icon name="sanity-white" alt="" />
+        <Icon name="html-white" alt="" />
+        <Icon name="ps-white" alt="" />
+        <Icon name="figma-white" alt="" />
+        <Icon name="principle-white" alt="" />
+        <Icon name="astro-white" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+<style lang="scss">
+  @use "../../../styles/utils.scss" as *;
+  .marquee-wrapper {
+    position: relative;
+    .o-e {
+      position: absolute;
+      // width: 10px;
+      // height: 10px;
+      // background-color: red;
+      top: -250%;
+    }
+  }
+  .marquee {
+    overflow: hidden;
+    position: relative;
+
+    display: flex;
+    @include s(padding, 37, 50);
+    justify-content: space-between;
+    @include s(gap, 50, 75);
+    flex-direction: column;
+    align-items: center;
+
+    &.animate {
+      .logos-rolling-wrapper {
+        .logos-rolling {
+          @media (max-width: 767px) {
+            animation: marquee 15s linear infinite;
+            @keyframes marquee {
+              to {
+                transform: translateX(-100%);
+              }
+            }
+          }
+        }
+      }
+    }
+    .logos-rolling-wrapper {
+      white-space: nowrap;
+      width: 100%;
+      @include s(margin-block, 80, 120);
+
+      .logos-rolling {
+        display: inline-block;
+        /* CSS for mobile devices */
+
+        img,
+        svg {
+          transform: translateZ(0.1px);
+          display: inline-block;
+          vertical-align: middle;
+          display: unset;
+          @include s(margin-inline, 60, 120);
+          @include s(height, 48, 48);
+          //   @media (max-width: 767px) {
+          //     margin-inline: 50px;
+          //   }
+          width: auto;
+          fill: var(--color-neutral-600);
+          &:nth-child(1) {
+          }
+          &:nth-child(2) {
+          }
+          &:nth-child(3) {
+            @include s(height, 28, 33);
+          }
+          &:nth-child(4) {
+          }
+          &:nth-child(5) {
+          }
+          &:nth-child(6) {
+            @include s(height, 44, 48);
+          }
+          &:nth-child(7) {
+          }
+          &:nth-child(8) {
+            @include s(height, 36, 44);
+          }
+        }
+      }
+    }
+  }
+</style>
