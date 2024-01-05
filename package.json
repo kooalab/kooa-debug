@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@swup/debug-plugin": "^4.0.4",
     "@swup/head-plugin": "^2.1.2",
     "@swup/preload-plugin": "^3.2.7",
     "@swup/scripts-plugin": "^2.1.0",

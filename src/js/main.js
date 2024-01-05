@@ -2,7 +2,7 @@ import Swup from "swup";
 import SwupHeadPlugin from "@swup/head-plugin";
 import SwupScriptsPlugin from "@swup/scripts-plugin";
 import SwupPreloadPlugin from '@swup/preload-plugin';
-
+import SwupDebugPlugin from '@swup/debug-plugin';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,7 +15,7 @@ const swup = new Swup({
         persistAssets: true
     }), new SwupScriptsPlugin(), new SwupPreloadPlugin(
         { preloadVisibleLinks: true }
-    )],
+    ), new SwupDebugPlugin()],
 });
 //----------------------------- End Launch Swup -----------------------------//
 
