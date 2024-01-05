@@ -51,16 +51,6 @@ let currentPath = Astro.request.url;
       </a>
     </li>
   </ul>
-  <div class="nav-hub">
-    <a href="/" id="logoOpen">
-      <span class="magnetic" data-strength="20"
-        ><Image src={logo} alt="Logo de KOOA" aria-hidden="true" /></span
-      >
-    </a>
-    <button id="cross">
-      <span class="magnetic" data-strength="20">Fermer</span>
-    </button>
-  </div>
 </nav>
 
 <style lang="scss">
@@ -121,7 +111,7 @@ let currentPath = Astro.request.url;
 
     ul.lower-container {
       z-index: 30;
-      background-color: grey;
+      background-color: rgb(60, 60, 60);
     }
 
     li {
