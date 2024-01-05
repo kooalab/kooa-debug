@@ -296,95 +296,6 @@ const { title, description } = Astro.props;
     @include s(font-size, 16, 16);
   }
 
-  // button.secondary,
-  // a.secondary {
-  //   transition: color 500ms cubic-bezier(0.42, 0.23, 0.25, 1);
-  //   @media (hover: hover) {
-  //     &:hover {
-  //       color: var(--clr-text-400);
-  //     }
-  //   }
-  // }
-  @keyframes moveLines {
-    0% {
-      transform: translateX(-70%);
-    }
-    100% {
-      transform: translateX(79%);
-    }
-  }
-  @keyframes moveSparkles {
-    0% {
-      transform: translate3d(0, 0, 0);
-      opacity: 1;
-    }
-    20% {
-      transform: translate3d(10px, -10px, 0);
-    }
-    40% {
-      transform: translate3d(0px, -20px, 0);
-    }
-    60% {
-      transform: translate3d(-10px, -25px, 0);
-    }
-    80% {
-      transform: translate3d(0px, -32px, 0);
-    }
-    100% {
-      transform: translate3d(15px, -38px, 0);
-      opacity: 0;
-    }
-  }
-
-  // .marker {
-  //   position: fixed;
-  //   inset: 0 0 30% 0;
-  //   border-bottom: 1px solid green;
-  // }
-
-  // /* Define a transition duration during page visits */
-  // html.is-changing .transition-fade {
-  //   transition: all 0s ease;
-  //   // background-color: var(--clr-bg-900);
-  // }
-  // /* Define the styles for the unloaded pages */
-  // html.is-animating .transition-fade {
-  //   opacity: 0;
-  //   transition: all 0.8s ease;
-  // }
-  // html.is-rendering .transition-fade {
-  //   opacity: 1;
-  // }
-
-  // //BLUR APPARITION EFFECT
-  // html.is-changing .transition-overlay {
-  //   transition: all 0.6s ease;
-  // }
-
-  // html.is-animating .transition-overlay {
-  //   backdrop-filter: blur(20px);
-  //   -webkit-backdrop-filter: blur(20px);
-  //   background-color: rgba(7, 8, 11, 1);
-  // }
-
-  // html.is-rendering .transition-overlay {
-  //   backdrop-filter: blur(0px);
-  //   -webkit-backdrop-filter: blur(0px);
-  //   background-color: rgba(7, 8, 11, 0.001);
-  // }
-  // .transition-overlay {
-  //   position: fixed;
-  //   top: 0;
-  //   left: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   z-index: 5;
-  //   background-color: rgba(7, 8, 11, 0.05);
-  //   // background: black;
-  //   pointer-events: none;
-  //   z-index: 5;
-  // }
-
   .transition-overlay {
     position: fixed;
     top: 0;
@@ -409,24 +320,6 @@ const { title, description } = Astro.props;
 
   html.is-rendering .transition-overlay {
     transform: translate3d(0, calc(var(--overlay-direction, 1) * 100%), 0);
-  }
-
-  .modal-background {
-    background-color: rgba(37, 37, 37, 0.071);
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    pointer-events: none;
-    -webkit-backdrop-filter: blur(0px);
-    backdrop-filter: blur(0px);
-  }
-  body.modal-open .modal-background {
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    pointer-events: all;
-    transition:
-      backdrop-filter 600ms ease,
-      -webkit-backdrop-filter 600ms ease;
   }
 </style>
 <script>

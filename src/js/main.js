@@ -3,9 +3,8 @@ import SwupHeadPlugin from "@swup/head-plugin";
 import SwupScriptsPlugin from "@swup/scripts-plugin";
 import SwupPreloadPlugin from '@swup/preload-plugin';
 
-import SplitText from "../js/SplitText";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger);
 
 //----------------------------- Launch Swup -----------------------------//
 const swup = new Swup({
