@@ -18,9 +18,6 @@ const swup = new Swup({
     ), new SwupDebugPlugin()],
 });
 //----------------------------- End Launch Swup -----------------------------//
-swup.hooks.on("visit:start", (visit) => {
-    visit.scroll.reset = false;
-});
 
 //----------------------------- Launch Lenis -----------------------------//
 // const lenis = new Lenis();
