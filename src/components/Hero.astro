@@ -60,7 +60,13 @@ const { description, title, accent, subTitle, type, ...rest } = Astro.props;
     </svg>
   </div>
   <div class="container">
-    <Title {type} mainTitle={title} accent={accent} subTitle={subTitle} />
+    <Title
+      class="animate"
+      {type}
+      mainTitle={title}
+      accent={accent}
+      subTitle={subTitle}
+    />
     <p>
       {description}
     </p>

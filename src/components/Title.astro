@@ -13,7 +13,7 @@ import swiss from "../assets/icons/swiss-flag.svg";
         {subTitle}
         <Image src={swiss} alt="swiss flag" class="swiss-flag" />
       </h1>
-      <h2 class="homepage">
+      <h2 class={`homepage ${rest.class}`}>
         {mainTitle + " "}
         <span class="accent"> {accent}</span>
       </h2>
@@ -106,6 +106,17 @@ import swiss from "../assets/icons/swiss-flag.svg";
       max-width: 15ch;
       @media screen and (max-width: 450px) {
         font-size: 10.8vw;
+      }
+      opacity: 0;
+      transform: translateY(20px);
+      @keyframes fade-in {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      &.animate {
+        animation: fade-in 0.5s ease forwards;
       }
     }
   }
