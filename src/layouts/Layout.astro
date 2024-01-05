@@ -296,30 +296,16 @@ const { title, description } = Astro.props;
     @include s(font-size, 16, 16);
   }
 
-  .transition-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 999;
-    background-color: yellow;
-    opacity: 0;
-    transform: translate3d(0, calc(-1 * 100% * var(--overlay-direction, 1)), 0);
-    pointer-events: none;
-  }
-
-  html.is-changing .transition-overlay {
-    transition: transform 400ms ease-in-out;
+  html.is-changing .transition-fade {
+    transition:
+      opacity 0.25s,
+      filter 0.25s;
     opacity: 1;
+    filter: blur(0);
   }
-
-  html.is-animating .transition-overlay {
-    transform: translate3d(0, 0, 0);
-  }
-
-  html.is-rendering .transition-overlay {
-    transform: translate3d(0, calc(var(--overlay-direction, 1) * 100%), 0);
+  html.is-animating .transition-fade {
+    opacity: 0;
+    filter: blur(20px);
   }
 </style>
 <script>
